@@ -26,7 +26,7 @@ plt.xlabel("Support Threshold (%)")
 plt.ylabel("Runtime (seconds)")
 plt.legend()
 plt.grid(True)
-plt.savefig(out_prefix + "_linear.png")
+plt.savefig(out_prefix)
 plt.close()
 
 # # Log scale plots
