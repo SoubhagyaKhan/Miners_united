@@ -1,0 +1,6 @@
+/home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/fpgrowth/fpgrowth/src/fpgrowth - find frequent item sets with the fpgrowth algorithm
+version 6.21 (2022.11.22)        (c) 2004-2022   Christian Borgelt
+reading /home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/generated_transactions.dat ... [1000 item(s), 15000 transaction(s)] done [0.03s].
+filtering, sorting and recoding items ... [168 item(s)] done [0.00s].
+sorting and reducing transactions ... [15000 transaction(s)] done [0.02s].
+writing /home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/output_task2/fp5/out.txt ... [167837381 set(s)] done [38.80s].

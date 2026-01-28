@@ -1,0 +1,7 @@
+/home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/apriori/apriori/src/apriori - find frequent item sets with the apriori algorithm
+version 6.31 (2022.11.22)        (c) 1996-2022   Christian Borgelt
+reading /home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/dataset/webdocs.dat ... [5267656 item(s), 1692082 transaction(s)] done [34.50s].
+filtering, sorting and recoding items ... [683 item(s)] done [1.72s].
+sorting and reducing transactions ... [1394053/1692082 transaction(s)] done [5.14s].
+building transaction tree ... [2590180 node(s)] done [0.63s].
+checking subsets of size 1 2 3 4 5 6
