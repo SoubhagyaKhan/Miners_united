@@ -1,0 +1,108 @@
+-------------------System Performance------------------
+                        86.7439sec
+                1066  Discovered SubGraphs
+---------------------------End-------------------------
+86.833446680 sec
+[Gaston]
+GASTON GrAph, Sequences and Tree ExtractiON algorithm
+Version 1.0 with Occurrence Lists
+Siegfried Nijssen, LIACS, 2004
+Read
+Edgecount
+Reorder
+Root 1
+Root 2
+Root 3
+Root 4
+Frequent 2 cyclic graphs: 0 real trees: 0 paths: 8 total: 8
+Frequent 3 cyclic graphs: 0 real trees: 0 paths: 18 total: 18
+Frequent 4 cyclic graphs: 0 real trees: 14 paths: 29 total: 43
+Frequent 5 cyclic graphs: 0 real trees: 33 paths: 43 total: 76
+Frequent 6 cyclic graphs: 0 real trees: 70 paths: 37 total: 107
+Frequent 7 cyclic graphs: 1 real trees: 132 paths: 32 total: 165
+Frequent 8 cyclic graphs: 3 real trees: 193 paths: 23 total: 219
+Frequent 9 cyclic graphs: 15 real trees: 201 paths: 10 total: 226
+Frequent 10 cyclic graphs: 23 real trees: 132 paths: 1 total: 156
+Frequent 11 cyclic graphs: 15 real trees: 27 paths: 0 total: 42
+Frequent 12 cyclic graphs: 2 real trees: 0 paths: 0 total: 2
+TOTAL:
+Frequent cyclic graphs: 59 real trees: 802 paths: 201 total: 1062
+Approximate total runtime: 5.97005s
+6.003835133 sec
+
+========== minSup = 50% ==========
+[FSG]
+51.739663070 sec
+[gSpan]
+scanning output/_converted/yeast_gspan.dat with 64110 graphs
+scanning done
+
+
+
+
+-------------------System Performance------------------
+                        31.2095sec
+                212  Discovered SubGraphs
+---------------------------End-------------------------
+31.253707191 sec
+[Gaston]
+GASTON GrAph, Sequences and Tree ExtractiON algorithm
+Version 1.0 with Occurrence Lists
+Siegfried Nijssen, LIACS, 2004
+Read
+Edgecount
+Reorder
+Root 1
+Root 2
+Root 3
+Root 4
+Frequent 2 cyclic graphs: 0 real trees: 0 paths: 6 total: 6
+Frequent 3 cyclic graphs: 0 real trees: 0 paths: 10 total: 10
+Frequent 4 cyclic graphs: 0 real trees: 5 paths: 13 total: 18
+Frequent 5 cyclic graphs: 0 real trees: 11 paths: 9 total: 20
+Frequent 6 cyclic graphs: 0 real trees: 24 paths: 9 total: 33
+Frequent 7 cyclic graphs: 1 real trees: 33 paths: 6 total: 40
+Frequent 8 cyclic graphs: 2 real trees: 46 paths: 4 total: 52
+Frequent 9 cyclic graphs: 7 real trees: 19 paths: 0 total: 26
+Frequent 10 cyclic graphs: 3 real trees: 0 paths: 0 total: 3
+TOTAL:
+Frequent cyclic graphs: 13 real trees: 138 paths: 57 total: 208
+Approximate total runtime: 2.81551s
+2.845098504 sec
+
+========== minSup = 95% ==========
+[FSG]
+10.396291156 sec
+[gSpan]
+scanning output/_converted/yeast_gspan.dat with 64110 graphs
+scanning done
+
+
+-------------------System Performance------------------
+                        1.62147sec
+                5  Discovered SubGraphs
+---------------------------End-------------------------
+1.639192505 sec
+[Gaston]
+GASTON GrAph, Sequences and Tree ExtractiON algorithm
+Version 1.0 with Occurrence Lists
+Siegfried Nijssen, LIACS, 2004
+Read
+Edgecount
+Reorder
+Root 3
+Root 4
+Frequent 2 cyclic graphs: 0 real trees: 0 paths: 2 total: 2
+Frequent 3 cyclic graphs: 0 real trees: 0 paths: 1 total: 1
+TOTAL:
+Frequent cyclic graphs: 0 real trees: 0 paths: 3 total: 3
+Approximate total runtime: 0.344934s
+.361100920 sec
+
+============== SUMMARY ==============
+Support    gSpan        FSG          Gaston      
+5          1337.511774282 1688.764016891 47.066901265
+10         362.269099465 503.075574254 17.586837429
+25         86.833446680 144.573521020 6.003835133 
+50         31.253707191 51.739663070 2.845098504 
+95         1.639192505  10.396291156 .361100920 

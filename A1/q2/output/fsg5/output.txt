@@ -1,0 +1,51 @@
+*******************************************************
+fsg 1.37 (PAFI 1.0) Copyright 2003, Regents of the University of Minnesota
+
+Transaction File Information --------------------------
+  Transaction File Name:                       output/_converted/yeast_fsg.dat
+  Number of Input Transactions:                64110
+  Number of Distinct Edge Labels:              3
+  Number of Distinct Vertex Labels:            11
+  Average Number of Edges In a Transaction:    37
+  Average Number of Vertices In a Transaction: 36
+  Max Number of Edges In a Transaction:        135
+  Max Number of Vertices In a Transaction:     129
+
+Options -----------------------------------------------
+  Min Output Pattern Size:                     1
+  Max Output Pattern Size:                     2147483647(INT_MAX)
+  Min Support Threshold:                       5.0% (3206 transactions)
+  Generate Only Maximal Patterns:              No
+  Generate PC-List:                            No
+  Generate TID-List:                           No
+
+Outputs -----------------------------------------------
+  Frequent Pattern File:                       output/_converted/yeast_fsg.fp
+
+  Size Candidates Frequent Patterns 
+  1               17                
+  2               43                
+  3    246        120               
+  4    534        317               
+  5    1237       718               
+  6    2311       1528              
+  7    4109       2895              
+  8    6651       4783              
+  9    8805       6527              
+  10   9857       7655              
+  11   9505       7308              
+  12   7130       5552              
+  13   4831       3927              
+  14   3492       2775              
+  15   2026       1614              
+  16   734        536               
+  17   123        84                
+  18   5          5                 
+
+  Largest Frequent Pattern Size:               18
+  Total Number of Candidates Generated:        61596
+  Total Number of Frequent Patterns Found:     46404
+
+Timing Information ------------------------------------
+  Elapsed User CPU Time:                       1676.0[sec]
+*******************************************************

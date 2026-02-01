@@ -1,0 +1,44 @@
+*******************************************************
+fsg 1.37 (PAFI 1.0) Copyright 2003, Regents of the University of Minnesota
+
+Transaction File Information --------------------------
+  Transaction File Name:                       output/_converted/yeast_fsg.dat
+  Number of Input Transactions:                64110
+  Number of Distinct Edge Labels:              3
+  Number of Distinct Vertex Labels:            11
+  Average Number of Edges In a Transaction:    37
+  Average Number of Vertices In a Transaction: 36
+  Max Number of Edges In a Transaction:        135
+  Max Number of Vertices In a Transaction:     129
+
+Options -----------------------------------------------
+  Min Output Pattern Size:                     1
+  Max Output Pattern Size:                     2147483647(INT_MAX)
+  Min Support Threshold:                       25.0% (16028 transactions)
+  Generate Only Maximal Patterns:              No
+  Generate PC-List:                            No
+  Generate TID-List:                           No
+
+Outputs -----------------------------------------------
+  Frequent Pattern File:                       output/_converted/yeast_fsg.fp
+
+  Size Candidates Frequent Patterns 
+  1               8                 
+  2               18                
+  3    80         43                
+  4    152        76                
+  5    220        107               
+  6    229        165               
+  7    321        219               
+  8    287        226               
+  9    204        156               
+  10   57         42                
+  11   3          2                 
+
+  Largest Frequent Pattern Size:               11
+  Total Number of Candidates Generated:        1553
+  Total Number of Frequent Patterns Found:     1062
+
+Timing Information ------------------------------------
+  Elapsed User CPU Time:                       134.9[sec]
+*******************************************************
