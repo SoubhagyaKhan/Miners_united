@@ -1,0 +1,702 @@
+# 100 Discriminative Subgraphs
+
+Pattern 0:
+  Nodes: 3, Edges: 2
+  Support: 2195
+  Discriminative Score: 0.2500
+  Node labels: [0, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 1:
+  Nodes: 4, Edges: 3
+  Support: 2081
+  Discriminative Score: 0.2496
+  Node labels: [4, 0, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 2:
+  Nodes: 4, Edges: 3
+  Support: 2081
+  Discriminative Score: 0.2496
+  Node labels: [3, 0, 0, 4]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 3:
+  Nodes: 3, Edges: 2
+  Support: 2001
+  Discriminative Score: 0.2485
+  Node labels: [0, 0, 4]
+  Edges: [(0, 1, 1), (1, 2, 0)]
+
+Pattern 4:
+  Nodes: 4, Edges: 3
+  Support: 1965
+  Discriminative Score: 0.2478
+  Node labels: [0, 0, 0, 4]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 5:
+  Nodes: 4, Edges: 3
+  Support: 1965
+  Discriminative Score: 0.2478
+  Node labels: [4, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 6:
+  Nodes: 4, Edges: 3
+  Support: 2384
+  Discriminative Score: 0.2475
+  Node labels: [0, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 7:
+  Nodes: 4, Edges: 3
+  Support: 1917
+  Discriminative Score: 0.2466
+  Node labels: [0, 0, 0, 4]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 8:
+  Nodes: 4, Edges: 3
+  Support: 1917
+  Discriminative Score: 0.2466
+  Node labels: [4, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 9:
+  Nodes: 3, Edges: 2
+  Support: 2438
+  Discriminative Score: 0.2461
+  Node labels: [0, 0, 4]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 10:
+  Nodes: 4, Edges: 3
+  Support: 1791
+  Discriminative Score: 0.2424
+  Node labels: [1, 0, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 11:
+  Nodes: 4, Edges: 3
+  Support: 1791
+  Discriminative Score: 0.2424
+  Node labels: [3, 0, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 12:
+  Nodes: 4, Edges: 3
+  Support: 1758
+  Discriminative Score: 0.2410
+  Node labels: [0, 0, 3, 3]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 0)]
+
+Pattern 13:
+  Nodes: 4, Edges: 3
+  Support: 1752
+  Discriminative Score: 0.2408
+  Node labels: [0, 0, 0, 4]
+  Edges: [(0, 1, 0), (0, 2, 1), (0, 3, 0)]
+
+Pattern 14:
+  Nodes: 4, Edges: 3
+  Support: 2621
+  Discriminative Score: 0.2391
+  Node labels: [0, 0, 0, 0]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 1)]
+
+Pattern 15:
+  Nodes: 3, Edges: 2
+  Support: 1667
+  Discriminative Score: 0.2366
+  Node labels: [0, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 1)]
+
+Pattern 16:
+  Nodes: 4, Edges: 3
+  Support: 2677
+  Discriminative Score: 0.2363
+  Node labels: [0, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 17:
+  Nodes: 4, Edges: 3
+  Support: 2677
+  Discriminative Score: 0.2363
+  Node labels: [0, 0, 0, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 18:
+  Nodes: 4, Edges: 3
+  Support: 2879
+  Discriminative Score: 0.2232
+  Node labels: [3, 0, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 19:
+  Nodes: 3, Edges: 2
+  Support: 1455
+  Discriminative Score: 0.2229
+  Node labels: [1, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 20:
+  Nodes: 3, Edges: 2
+  Support: 1454
+  Discriminative Score: 0.2229
+  Node labels: [0, 4, 3]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 21:
+  Nodes: 4, Edges: 3
+  Support: 1450
+  Discriminative Score: 0.2226
+  Node labels: [1, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 22:
+  Nodes: 4, Edges: 3
+  Support: 1450
+  Discriminative Score: 0.2226
+  Node labels: [0, 0, 0, 1]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 23:
+  Nodes: 4, Edges: 3
+  Support: 1444
+  Discriminative Score: 0.2221
+  Node labels: [0, 0, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 24:
+  Nodes: 4, Edges: 3
+  Support: 1444
+  Discriminative Score: 0.2221
+  Node labels: [1, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 25:
+  Nodes: 3, Edges: 2
+  Support: 1400
+  Discriminative Score: 0.2186
+  Node labels: [0, 4, 0]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 26:
+  Nodes: 4, Edges: 3
+  Support: 1396
+  Discriminative Score: 0.2183
+  Node labels: [4, 0, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 27:
+  Nodes: 4, Edges: 3
+  Support: 1396
+  Discriminative Score: 0.2183
+  Node labels: [3, 0, 0, 4]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 28:
+  Nodes: 4, Edges: 3
+  Support: 1321
+  Discriminative Score: 0.2118
+  Node labels: [0, 0, 4, 3]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 29:
+  Nodes: 4, Edges: 3
+  Support: 1321
+  Discriminative Score: 0.2118
+  Node labels: [3, 4, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 30:
+  Nodes: 3, Edges: 2
+  Support: 1315
+  Discriminative Score: 0.2113
+  Node labels: [3, 0, 4]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 31:
+  Nodes: 4, Edges: 3
+  Support: 1314
+  Discriminative Score: 0.2112
+  Node labels: [0, 0, 4, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 32:
+  Nodes: 4, Edges: 3
+  Support: 1314
+  Discriminative Score: 0.2112
+  Node labels: [0, 4, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 33:
+  Nodes: 3, Edges: 2
+  Support: 1284
+  Discriminative Score: 0.2084
+  Node labels: [0, 1, 0]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 34:
+  Nodes: 3, Edges: 2
+  Support: 3063
+  Discriminative Score: 0.2075
+  Node labels: [3, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 35:
+  Nodes: 4, Edges: 3
+  Support: 1269
+  Discriminative Score: 0.2070
+  Node labels: [0, 0, 1, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 36:
+  Nodes: 4, Edges: 3
+  Support: 1269
+  Discriminative Score: 0.2070
+  Node labels: [0, 1, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 37:
+  Nodes: 4, Edges: 3
+  Support: 3088
+  Discriminative Score: 0.2051
+  Node labels: [0, 0, 0, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 1)]
+
+Pattern 38:
+  Nodes: 3, Edges: 2
+  Support: 1242
+  Discriminative Score: 0.2044
+  Node labels: [0, 1, 3]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 39:
+  Nodes: 4, Edges: 3
+  Support: 1225
+  Discriminative Score: 0.2027
+  Node labels: [0, 0, 1, 3]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 40:
+  Nodes: 4, Edges: 3
+  Support: 1225
+  Discriminative Score: 0.2027
+  Node labels: [3, 1, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 41:
+  Nodes: 4, Edges: 3
+  Support: 1205
+  Discriminative Score: 0.2006
+  Node labels: [1, 0, 0, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 42:
+  Nodes: 4, Edges: 3
+  Support: 1205
+  Discriminative Score: 0.2006
+  Node labels: [0, 0, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 43:
+  Nodes: 4, Edges: 3
+  Support: 1201
+  Discriminative Score: 0.2002
+  Node labels: [4, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 44:
+  Nodes: 4, Edges: 3
+  Support: 1201
+  Discriminative Score: 0.2002
+  Node labels: [0, 0, 0, 4]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 45:
+  Nodes: 4, Edges: 3
+  Support: 1141
+  Discriminative Score: 0.1939
+  Node labels: [0, 0, 0, 3]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 0)]
+
+Pattern 46:
+  Nodes: 4, Edges: 3
+  Support: 3260
+  Discriminative Score: 0.1867
+  Node labels: [0, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 47:
+  Nodes: 4, Edges: 3
+  Support: 3260
+  Discriminative Score: 0.1867
+  Node labels: [0, 0, 0, 3]
+  Edges: [(0, 1, 0), (0, 2, 1), (0, 3, 0)]
+
+Pattern 48:
+  Nodes: 4, Edges: 3
+  Support: 1064
+  Discriminative Score: 0.1851
+  Node labels: [0, 1, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 49:
+  Nodes: 4, Edges: 3
+  Support: 1064
+  Discriminative Score: 0.1851
+  Node labels: [3, 0, 1, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 50:
+  Nodes: 4, Edges: 3
+  Support: 1058
+  Discriminative Score: 0.1844
+  Node labels: [0, 4, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 51:
+  Nodes: 4, Edges: 3
+  Support: 1058
+  Discriminative Score: 0.1844
+  Node labels: [3, 0, 4, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 52:
+  Nodes: 3, Edges: 2
+  Support: 1046
+  Discriminative Score: 0.1830
+  Node labels: [0, 0, 1]
+  Edges: [(0, 1, 1), (1, 2, 0)]
+
+Pattern 53:
+  Nodes: 4, Edges: 3
+  Support: 1035
+  Discriminative Score: 0.1817
+  Node labels: [1, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 54:
+  Nodes: 4, Edges: 3
+  Support: 1035
+  Discriminative Score: 0.1817
+  Node labels: [0, 0, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 55:
+  Nodes: 4, Edges: 3
+  Support: 3311
+  Discriminative Score: 0.1806
+  Node labels: [0, 0, 0, 3]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 56:
+  Nodes: 4, Edges: 3
+  Support: 3311
+  Discriminative Score: 0.1806
+  Node labels: [3, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 57:
+  Nodes: 4, Edges: 3
+  Support: 1025
+  Discriminative Score: 0.1805
+  Node labels: [0, 0, 0, 1]
+  Edges: [(0, 1, 0), (0, 2, 1), (0, 3, 0)]
+
+Pattern 58:
+  Nodes: 4, Edges: 3
+  Support: 1012
+  Discriminative Score: 0.1789
+  Node labels: [1, 0, 0, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 1)]
+
+Pattern 59:
+  Nodes: 4, Edges: 3
+  Support: 1012
+  Discriminative Score: 0.1789
+  Node labels: [0, 0, 0, 1]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 1)]
+
+Pattern 60:
+  Nodes: 4, Edges: 3
+  Support: 1007
+  Discriminative Score: 0.1783
+  Node labels: [1, 0, 0, 3]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 61:
+  Nodes: 4, Edges: 3
+  Support: 1007
+  Discriminative Score: 0.1783
+  Node labels: [3, 0, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 62:
+  Nodes: 4, Edges: 3
+  Support: 3339
+  Discriminative Score: 0.1772
+  Node labels: [0, 0, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 63:
+  Nodes: 4, Edges: 3
+  Support: 3339
+  Discriminative Score: 0.1772
+  Node labels: [3, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 64:
+  Nodes: 4, Edges: 3
+  Support: 3379
+  Discriminative Score: 0.1721
+  Node labels: [0, 0, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 65:
+  Nodes: 4, Edges: 3
+  Support: 3379
+  Discriminative Score: 0.1721
+  Node labels: [3, 0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 66:
+  Nodes: 3, Edges: 2
+  Support: 3379
+  Discriminative Score: 0.1721
+  Node labels: [0, 0, 3]
+  Edges: [(0, 1, 1), (1, 2, 0)]
+
+Pattern 67:
+  Nodes: 4, Edges: 3
+  Support: 885
+  Discriminative Score: 0.1624
+  Node labels: [0, 0, 4, 3]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 68:
+  Nodes: 4, Edges: 3
+  Support: 885
+  Discriminative Score: 0.1624
+  Node labels: [3, 4, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 69:
+  Nodes: 3, Edges: 2
+  Support: 3458
+  Discriminative Score: 0.1616
+  Node labels: [0, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 70:
+  Nodes: 3, Edges: 2
+  Support: 854
+  Discriminative Score: 0.1581
+  Node labels: [1, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 1)]
+
+Pattern 71:
+  Nodes: 4, Edges: 3
+  Support: 829
+  Discriminative Score: 0.1546
+  Node labels: [0, 4, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 72:
+  Nodes: 4, Edges: 3
+  Support: 829
+  Discriminative Score: 0.1546
+  Node labels: [0, 0, 4, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 73:
+  Nodes: 4, Edges: 3
+  Support: 809
+  Discriminative Score: 0.1517
+  Node labels: [0, 0, 1, 3]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 0)]
+
+Pattern 74:
+  Nodes: 4, Edges: 3
+  Support: 789
+  Discriminative Score: 0.1488
+  Node labels: [0, 0, 1, 1]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 1)]
+
+Pattern 75:
+  Nodes: 3, Edges: 2
+  Support: 769
+  Discriminative Score: 0.1459
+  Node labels: [0, 4, 1]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 76:
+  Nodes: 3, Edges: 2
+  Support: 756
+  Discriminative Score: 0.1439
+  Node labels: [3, 4, 3]
+  Edges: [(0, 1, 0), (1, 2, 0)]
+
+Pattern 77:
+  Nodes: 4, Edges: 3
+  Support: 755
+  Discriminative Score: 0.1438
+  Node labels: [4, 0, 0, 3]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 0)]
+
+Pattern 78:
+  Nodes: 4, Edges: 3
+  Support: 717
+  Discriminative Score: 0.1380
+  Node labels: [1, 0, 0, 3]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 79:
+  Nodes: 4, Edges: 3
+  Support: 717
+  Discriminative Score: 0.1380
+  Node labels: [3, 0, 0, 1]
+  Edges: [(0, 1, 0), (1, 2, 1), (2, 3, 0)]
+
+Pattern 80:
+  Nodes: 4, Edges: 3
+  Support: 717
+  Discriminative Score: 0.1380
+  Node labels: [4, 0, 3, 3]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 0)]
+
+Pattern 81:
+  Nodes: 4, Edges: 3
+  Support: 713
+  Discriminative Score: 0.1374
+  Node labels: [0, 0, 4, 1]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 82:
+  Nodes: 4, Edges: 3
+  Support: 713
+  Discriminative Score: 0.1374
+  Node labels: [1, 4, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 83:
+  Nodes: 3, Edges: 2
+  Support: 705
+  Discriminative Score: 0.1361
+  Node labels: [1, 4, 1]
+  Edges: [(0, 1, 0), (1, 2, 1)]
+
+Pattern 84:
+  Nodes: 3, Edges: 2
+  Support: 701
+  Discriminative Score: 0.1355
+  Node labels: [0, 4, 1]
+  Edges: [(0, 1, 0), (1, 2, 1)]
+
+Pattern 85:
+  Nodes: 4, Edges: 3
+  Support: 676
+  Discriminative Score: 0.1316
+  Node labels: [4, 0, 1, 1]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 1)]
+
+Pattern 86:
+  Nodes: 4, Edges: 3
+  Support: 670
+  Discriminative Score: 0.1306
+  Node labels: [0, 0, 4, 1]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 1)]
+
+Pattern 87:
+  Nodes: 4, Edges: 3
+  Support: 670
+  Discriminative Score: 0.1306
+  Node labels: [1, 4, 0, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 1)]
+
+Pattern 88:
+  Nodes: 3, Edges: 2
+  Support: 663
+  Discriminative Score: 0.1295
+  Node labels: [0, 4, 0]
+  Edges: [(0, 1, 0), (1, 2, 1)]
+
+Pattern 89:
+  Nodes: 3, Edges: 2
+  Support: 658
+  Discriminative Score: 0.1287
+  Node labels: [0, 0, 4]
+  Edges: [(0, 1, 0), (1, 2, 1)]
+
+Pattern 90:
+  Nodes: 4, Edges: 3
+  Support: 657
+  Discriminative Score: 0.1285
+  Node labels: [0, 1, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 1)]
+
+Pattern 91:
+  Nodes: 4, Edges: 3
+  Support: 657
+  Discriminative Score: 0.1285
+  Node labels: [0, 0, 1, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 0)]
+
+Pattern 92:
+  Nodes: 4, Edges: 3
+  Support: 648
+  Discriminative Score: 0.1271
+  Node labels: [0, 0, 3, 4]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 0)]
+
+Pattern 93:
+  Nodes: 4, Edges: 3
+  Support: 641
+  Discriminative Score: 0.1260
+  Node labels: [0, 0, 4, 1]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 94:
+  Nodes: 4, Edges: 3
+  Support: 641
+  Discriminative Score: 0.1260
+  Node labels: [1, 4, 0, 0]
+  Edges: [(0, 1, 0), (1, 2, 0), (2, 3, 0)]
+
+Pattern 95:
+  Nodes: 4, Edges: 3
+  Support: 636
+  Discriminative Score: 0.1251
+  Node labels: [0, 0, 0, 1]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 0)]
+
+Pattern 96:
+  Nodes: 3, Edges: 2
+  Support: 628
+  Discriminative Score: 0.1238
+  Node labels: [1, 0, 4]
+  Edges: [(0, 1, 1), (1, 2, 0)]
+
+Pattern 97:
+  Nodes: 4, Edges: 3
+  Support: 614
+  Discriminative Score: 0.1215
+  Node labels: [0, 0, 4, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 1)]
+
+Pattern 98:
+  Nodes: 4, Edges: 3
+  Support: 614
+  Discriminative Score: 0.1215
+  Node labels: [0, 4, 0, 0]
+  Edges: [(0, 1, 1), (1, 2, 0), (2, 3, 1)]
+
+Pattern 99:
+  Nodes: 4, Edges: 3
+  Support: 599
+  Discriminative Score: 0.1190
+  Node labels: [4, 0, 0, 0]
+  Edges: [(0, 1, 0), (0, 2, 0), (0, 3, 0)]
+

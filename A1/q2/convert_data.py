@@ -21,9 +21,7 @@ FSG_OUT = os.path.join(OUT_DIR, "yeast_fsg.dat")
 GSPAN_OUT = os.path.join(OUT_DIR, "yeast_gspan.dat")
 GASTON_OUT = os.path.join(OUT_DIR, "yeast_gaston.dat")
 
-# --------------------------------------------------
 # Global node-label mapping (S,O,N,C,H → 0,1,2...)
-# --------------------------------------------------
 node_label_map = {}
 next_node_label = 0
 
@@ -34,9 +32,7 @@ def map_node_label(lbl):
         next_node_label += 1
     return node_label_map[lbl]
 
-# --------------------------------------------------
 # Read Yeast dataset
-# --------------------------------------------------
 def read_yeast(path):
     with open(path) as f:
         lines = [l.strip() for l in f if l.strip()]
@@ -73,18 +69,14 @@ graphs = read_yeast(INPUT_FILE)
 print(f"[converter] Parsed {len(graphs)} graphs")
 print(f"[converter] Node label map: {node_label_map}")
 
-# --------------------------------------------------
 # Helpers for FSG string labels
-# --------------------------------------------------
 def fsg_node_label(i):
     return f"V{i}"
 
 def fsg_edge_label(i):
     return f"E{i}"
 
-# --------------------------------------------------
 # Write FSG (STRICT format)
-# --------------------------------------------------
 with open(FSG_OUT, "w") as f:
     for idx, (_, nodes, edges) in enumerate(graphs):
         f.write(f"t # {idx}\n")
@@ -96,9 +88,7 @@ with open(FSG_OUT, "w") as f:
 
 print(f"✔ FSG written → {FSG_OUT}")
 
-# --------------------------------------------------
 # Write gSpan
-# --------------------------------------------------
 with open(GSPAN_OUT, "w") as f:
     for gid, nodes, edges in graphs:
         f.write(f"t # {gid}\n")
@@ -109,9 +99,7 @@ with open(GSPAN_OUT, "w") as f:
 
 print(f"✔ gSpan written → {GSPAN_OUT}")
 
-# --------------------------------------------------
 # Write Gaston (same as gSpan)
-# --------------------------------------------------
 with open(GASTON_OUT, "w") as f:
     for gid, nodes, edges in graphs:
         f.write(f"t # {gid}\n")
