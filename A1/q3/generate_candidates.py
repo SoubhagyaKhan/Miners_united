@@ -64,20 +64,19 @@ def write_candidates_file(candidates: list, output_path: str):
     """
     Write candidates to file in the required format:
     
-    q # 1
+    q # 0
     c # 1 2 3 4 5
-    q # 2
+    q # 1
     c # 4 5 12 45
     ...
     """
     with open(output_path, 'w') as f:
         for i, candidate_list in enumerate(candidates):
-            # Query number (1-indexed in output)
-            f.write(f"q # {i + 1}\n")
+            # Query number (0-indexed in output)
+            f.write(f"q # {i}\n")
             
-            # Candidate graph numbers (1-indexed in output)
-            # Convert 0-indexed to 1-indexed
-            candidate_str = " ".join(str(c + 1) for c in candidate_list)
+            # Candidate graph numbers  (0-indexed in output)
+            candidate_str = " ".join(str(c) for c in candidate_list)
             f.write(f"c # {candidate_str}\n")
     
     print(f"Wrote candidates to {output_path}")
