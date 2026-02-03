@@ -1,8 +1,5 @@
-/home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/apriori/apriori/src/apriori - find frequent item sets with the apriori algorithm
+/home/yscl10/nibbleCoder/Miners_united/A1/q1/apriori/apriori/src/apriori - find frequent item sets with the apriori algorithm
 version 6.31 (2022.11.22)        (c) 1996-2022   Christian Borgelt
-reading /home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/generated_transactions.dat ... [1000 item(s), 15000 transaction(s)] done [0.07s].
-filtering, sorting and recoding items ... [10 item(s)] done [0.00s].
-sorting and reducing transactions ... [217/15000 transaction(s)] done [0.00s].
-building transaction tree ... [331 node(s)] done [0.00s].
-checking subsets of size 1 2 done [0.00s].
-writing /home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/output_task2/ap90/out.txt ... [10 set(s)] done [0.00s].
+reading /home/yscl10/nibbleCoder/Miners_united/A1/q1/generate_datasets.dat ... [500 item(s), 10124 transaction(s)] done [0.00s].
+filtering, sorting and recoding items ... 
+/home/yscl10/nibbleCoder/Miners_united/A1/q1/apriori/apriori/src/apriori: no (frequent) items found

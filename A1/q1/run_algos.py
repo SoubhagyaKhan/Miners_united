@@ -12,7 +12,7 @@ supports = [5, 10, 25, 50, 90]
 
 os.makedirs(outdir, exist_ok=True)
 
-TIMEOUT = 1200 # FOR QUESTION 2
+TIMEOUT = 7200 # FOR QUESTION 2
 # 7200 for QUESTION 1
 
 # def run(cmd, ap_out):

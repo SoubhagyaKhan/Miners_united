@@ -1,6 +1,6 @@
-/home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/fpgrowth/fpgrowth/src/fpgrowth - find frequent item sets with the fpgrowth algorithm
+/home/yscl10/nibbleCoder/Miners_united/A1/q1/fpgrowth/fpgrowth/src/fpgrowth - find frequent item sets with the fpgrowth algorithm
 version 6.21 (2022.11.22)        (c) 2004-2022   Christian Borgelt
-reading /home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/generated_transactions.dat ... [1000 item(s), 15000 transaction(s)] done [0.04s].
-filtering, sorting and recoding items ... [30 item(s)] done [0.00s].
-sorting and reducing transactions ... [14606/15000 transaction(s)] done [0.01s].
-writing /home/scai/msr/aiy257584/scratch/MSR_IITD_2nd_Sem/DATA_MINING_COL761/Miners_united/A1/q1/output_task2/fp50/out.txt ... [8743 set(s)] done [0.02s].
+reading /home/yscl10/nibbleCoder/Miners_united/A1/q1/generate_datasets.dat ... [500 item(s), 10124 transaction(s)] done [0.01s].
+filtering, sorting and recoding items ... [25 item(s)] done [0.00s].
+sorting and reducing transactions ... [2470/10124 transaction(s)] done [0.00s].
+writing output_task3/fp50/out.txt ... [3851123 set(s)] done [0.49s].
