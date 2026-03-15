@@ -2,6 +2,7 @@ import sys
 import random
 import heapq
 from collections import deque
+import time
 
 # Load seed set
 def load_seeds(path):
@@ -22,7 +23,7 @@ def load_graph(path):
             max_node = max(max_node, u, v)
             edges.append((u, v, p))
             
-    print(f"Total edges in the graph: {len(edges)}")
+    print(f"Total edges in the graph: {len(edges)} :: Max Node : {max_node}")
     return edges, max_node
 
 # Generate Monte Carlo realizations using ALL edges to maintain RNG sync
@@ -30,7 +31,7 @@ def generate_realizations(edges, r, max_node):
     print(f"Generating {r} Monte Carlo episodes...") 
     realizations = [] 
 
-    for _ in range(r):
+    for _ in range(r*4):
         g = [[] for _ in range(max_node + 1)]
         
         for u, v, p in edges:
@@ -40,6 +41,33 @@ def generate_realizations(edges, r, max_node):
         realizations.append(g)
 
     return realizations
+
+def get_dynamic_depth(seeds, max_node, realizations):
+    # 1. SCOUTING RUN: Find the max depth of the fire
+    max_fire_depth = 0
+    q = deque([(s, 0) for s in seeds])
+    visited = [False] * (max_node + 1)
+    
+    for s in seeds: 
+        visited[s] = True
+    
+    # We just use the first realization graph for a quick estimate
+    g_scout = realizations[0] 
+    
+    while q:
+        u, depth = q.popleft()
+        max_fire_depth = max(max_fire_depth, depth)
+        for v in g_scout[u]:
+            if not visited[v]:
+                visited[v] = True
+                q.append((v, depth + 1))
+                
+    # 2. DYNAMIC LIMIT: Quarantine the first 30% to 50% of the fire
+    # We use max(3, ...) to ensure we always look at least 3 hops out
+    dynamic_limit = max(3, max_fire_depth // 3) 
+    print(f"Max fire depth detected: {max_fire_depth}. Setting dynamic depth limit to: {dynamic_limit}")
+
+    return dynamic_limit 
 
 # BFS spread with O(1) array lookups
 def simulate_spread(graph, seeds, blocked, hops, max_node):
@@ -145,6 +173,7 @@ def main():
     hops = int(sys.argv[6])
 
     random.seed(42)
+    start_time = time.time()
 
     seeds = load_seeds(seed_path)
     print(f"Loaded seeds...{seeds}")
@@ -153,6 +182,7 @@ def main():
     print(f"Loaded Graph...{graph_path}")
 
     realizations = generate_realizations(edges, r, max_node)
+    dynamic_depth = get_dynamic_depth(seeds, max_node, realizations)    
 
     # --- THE CANDIDATE PRUNING PHASE ---
     # Find which edges are actually reachable in these specific realizations
@@ -166,11 +196,15 @@ def main():
             
         while q:
             u, depth = q.popleft()
+
             if hops != -1 and depth >= hops: 
                 continue
+            
+            if depth <= dynamic_depth: 
+                for v in g[u]:
+                    candidate_edges.add((u, v))
                 
             for v in g[u]:
-                candidate_edges.add((u, v)) # This edge is reachable!
                 if not visited[v]:
                     visited[v] = True
                     q.append((v, depth + 1))
@@ -178,6 +212,7 @@ def main():
     print(f"Reduced CELF search space from {len(edges)} to {len(candidate_edges)} reachable candidate edges.")
 
     adaptive_greedy(candidate_edges, seeds, realizations, k, hops, output_path, max_node)
+    print(f"Completed in {(time.time()-start_time):.4f} s")
 
 if __name__ == "__main__":
     main()
