@@ -31,7 +31,7 @@ def generate_realizations(edges, r, max_node):
     print(f"Generating {r} Monte Carlo episodes...") 
     realizations = [] 
 
-    for _ in range(r*4):
+    for _ in range(r):
         g = [[] for _ in range(max_node + 1)]
         
         for u, v, p in edges:
