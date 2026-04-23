@@ -1,0 +1,52 @@
+(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3$ python -c "
+import torch, torch_geometric, torch_scatter, torch_sparse, torch_cluster
+print('torch:', torch.__version__)
+print('cuda:', torch.cuda.is_available())
+print('pyg:', torch_geometric.__version__)
+print('extensions: OK')
+"
+torch: 2.7.1+cu118
+cuda: True
+pyg: 2.7.0
+extensions: OK
+(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3$ python load_dataset.py --dataset A --data_dir /home/trishanku/dm/Miners_united/A3/public_datasets
+
+====================================================
+  Dataset A
+====================================================
+  COL761NodeDataset(name=A, nodes=2708, edges=10556, classes=7)
+  Node features   : 1433
+  Classes         : 7
+  Labeled nodes   : 640
+  Train         : 140
+  Val           : 500
+  Unlabeled nodes : 2,068
+
+(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3$ python load_dataset.py --dataset B --data_dir /home/trishanku/dm/Miners_united/A3/public_datasets
+ 
+Processing...
+Done!
+
+====================================================
+  Dataset B
+====================================================
+  COL761NodeDataset(name=B, nodes=2890331, edges=24754822, classes=2)
+  Node features   : 1179
+  Classes         : 2
+  Labeled nodes   : 578,066
+  Train         : 289,033
+  Val           : 289,033
+  Unlabeled nodes : 2,312,265
+
+(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3$ python load_dataset.py --dataset C --data_dir /home/trishanku/dm/Miners_united/A3/public_datasets
+
+====================================================
+  Dataset C
+====================================================
+  COL761LinkDataset(nodes=3199, train_pos=3918, valid_pos=227)
+  train_pos       : torch.Size([3918, 2])
+  train_neg       : torch.Size([3870, 2])
+  valid_pos       : torch.Size([227, 2])
+  valid_neg       : torch.Size([227, 500, 2])
+  x (node feats)  : torch.Size([3327, 3703])
+  edge_index      : torch.Size([2, 7836])

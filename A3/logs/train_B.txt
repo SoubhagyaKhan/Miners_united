@@ -1,0 +1,105 @@
+(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3$ bash train.sh
+Device: cuda
+Loading dataset B...
+  Loaded in 6.4s
+  nodes=2,890,331  edges=24,754,822
+  train nodes=289,033  val nodes=289,033
+Config: GraphSAGEConfig(hidden_dim=256, num_layers=3, dropout=0.5, lr=0.001, weight_decay=1e-05, epochs=20, patience=5, eta_min=1e-06, batch_size=2048, num_neighbors=[15, 10, 5], num_workers=4, val_batch_size=4096)
+GraphSAGE  hidden=256  params=1,170,434
+
+Epoch 1/20  loss=0.0568  [15.2s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.8503
+  ↑ Best AUC=0.8503  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 2/20  loss=0.0365  [18.8s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.8768
+  ↑ Best AUC=0.8768  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 3/20  loss=0.0349  [16.7s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.8872
+  ↑ Best AUC=0.8872  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 4/20  loss=0.0336  [21.9s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.8866
+
+Epoch 5/20  loss=0.0335  [32.0s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.8965
+  ↑ Best AUC=0.8965  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 6/20  loss=0.0329  [27.3s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.8989
+  ↑ Best AUC=0.8989  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 7/20  loss=0.0324  [26.3s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9020
+  ↑ Best AUC=0.9020  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 8/20  loss=0.0318  [27.7s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9027
+  ↑ Best AUC=0.9027  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 9/20  loss=0.0318  [28.5s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9010
+
+Epoch 10/20  loss=0.0314  [30.8s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9048
+  ↑ Best AUC=0.9048  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 11/20  loss=0.0313  [29.3s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9037
+
+Epoch 12/20  loss=0.0308  [30.7s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9064
+  ↑ Best AUC=0.9064  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 13/20  loss=0.0303  [28.1s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9062
+
+Epoch 14/20  loss=0.0299  [30.6s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9074
+  ↑ Best AUC=0.9074  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 15/20  loss=0.0296  [30.1s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9081
+  ↑ Best AUC=0.9081  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 16/20  loss=0.0292  [30.7s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9083
+  ↑ Best AUC=0.9083  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 17/20  loss=0.0288  [29.6s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9089
+  ↑ Best AUC=0.9089  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 18/20  loss=0.0286  [30.7s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9090
+  ↑ Best AUC=0.9090  saved → ./best_models/aiy257584_model_B.pt
+
+Epoch 19/20  loss=0.0285  [30.1s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9087
+
+Epoch 20/20  loss=0.0283  [26.4s]
+  Running val AUC-ROC ...
+  Val AUC-ROC = 0.9088
+
+Done. Best val AUC-ROC = 0.9090
+Model saved to ./best_models/aiy257584_model_B.pt

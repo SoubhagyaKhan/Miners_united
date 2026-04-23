@@ -1,0 +1,119 @@
+(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3$ bash train.sh
+Device : cuda  |  arch : GCN
+Dataset A  |  nodes=2708  in_dim=1433  classes=7
+  train=140  val=500
+Model params : 868,871
+Config : GCNConfig(hidden_dim=256, num_layers=3, dropout=0.5, lr=0.01, weight_decay=0.0005, epochs=2000, patience=30, eval_every=10, eta_min=1e-05, label_smoothing=0.1)
+Epoch    1/2000  loss=2.5998  train=0.1429  val=0.0620  [0.3s]
+  ↑ best val=0.0620  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   10/2000  loss=0.7767  train=0.1714  val=0.1240  [0.3s]
+  ↑ best val=0.1240  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   20/2000  loss=0.6641  train=0.1714  val=0.1300  [0.3s]
+  ↑ best val=0.1300  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   30/2000  loss=0.5868  train=0.2857  val=0.2600  [0.4s]
+  ↑ best val=0.2600  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   40/2000  loss=0.5600  train=0.5571  val=0.2940  [0.4s]
+  ↑ best val=0.2940  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   50/2000  loss=0.5449  train=0.5357  val=0.3040  [0.5s]
+  ↑ best val=0.3040  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   60/2000  loss=0.5166  train=0.9929  val=0.5960  [0.5s]
+  ↑ best val=0.5960  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   70/2000  loss=0.5152  train=1.0000  val=0.7300  [0.6s]
+  ↑ best val=0.7300  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   80/2000  loss=0.5053  train=1.0000  val=0.7240  [0.7s]
+Epoch   90/2000  loss=0.5023  train=1.0000  val=0.7400  [0.7s]
+  ↑ best val=0.7400  saved -> ./best_models/aiy257584_model_A.pt
+Epoch  100/2000  loss=0.4943  train=1.0000  val=0.7500  [0.8s]
+  ↑ best val=0.7500  saved -> ./best_models/aiy257584_model_A.pt
+Epoch  110/2000  loss=0.4864  train=1.0000  val=0.7480  [0.9s]
+Epoch  120/2000  loss=0.4885  train=1.0000  val=0.7620  [1.0s]
+  ↑ best val=0.7620  saved -> ./best_models/aiy257584_model_A.pt
+Epoch  130/2000  loss=0.4988  train=1.0000  val=0.7480  [1.1s]
+Epoch  140/2000  loss=0.4905  train=1.0000  val=0.7560  [1.2s]
+Epoch  150/2000  loss=0.4849  train=1.0000  val=0.7380  [1.2s]
+Epoch  160/2000  loss=0.4922  train=1.0000  val=0.7480  [1.3s]
+Epoch  170/2000  loss=0.4817  train=1.0000  val=0.7580  [1.4s]
+Epoch  180/2000  loss=0.4806  train=1.0000  val=0.7560  [1.5s]
+Epoch  190/2000  loss=0.4837  train=1.0000  val=0.7520  [1.6s]
+Epoch  200/2000  loss=0.4764  train=1.0000  val=0.7540  [1.7s]
+Epoch  210/2000  loss=0.4809  train=1.0000  val=0.7460  [1.8s]
+Epoch  220/2000  loss=0.4782  train=1.0000  val=0.7420  [1.9s]
+Epoch  230/2000  loss=0.4797  train=1.0000  val=0.7460  [2.0s]
+Epoch  240/2000  loss=0.4802  train=1.0000  val=0.7480  [2.0s]
+Epoch  250/2000  loss=0.4791  train=1.0000  val=0.7200  [2.1s]
+Epoch  260/2000  loss=0.4744  train=1.0000  val=0.7460  [2.2s]
+Epoch  270/2000  loss=0.4714  train=1.0000  val=0.7300  [2.3s]
+Epoch  280/2000  loss=0.4805  train=1.0000  val=0.7500  [2.4s]
+Epoch  290/2000  loss=0.4756  train=1.0000  val=0.7600  [2.5s]
+Epoch  300/2000  loss=0.4787  train=1.0000  val=0.7600  [2.6s]
+Epoch  310/2000  loss=0.4820  train=1.0000  val=0.7220  [2.7s]
+Epoch  320/2000  loss=0.4717  train=1.0000  val=0.7420  [2.8s]
+Epoch  330/2000  loss=0.4776  train=1.0000  val=0.7300  [2.9s]
+Epoch  340/2000  loss=0.4806  train=1.0000  val=0.7440  [3.0s]
+Epoch  350/2000  loss=0.4787  train=1.0000  val=0.7460  [3.1s]
+Epoch  360/2000  loss=0.4744  train=1.0000  val=0.7620  [3.2s]
+Epoch  370/2000  loss=0.4797  train=1.0000  val=0.7500  [3.3s]
+Epoch  380/2000  loss=0.4830  train=1.0000  val=0.7440  [3.4s]
+Epoch  390/2000  loss=0.4768  train=1.0000  val=0.7380  [3.5s]
+Epoch  400/2000  loss=0.4731  train=1.0000  val=0.7480  [3.6s]
+Epoch  410/2000  loss=0.4739  train=1.0000  val=0.7220  [3.7s]
+Epoch  420/2000  loss=0.4771  train=1.0000  val=0.7420  [3.8s]
+Early stopping at epoch 420 (no improvement for 30 evals)
+
+Done. Best val accuracy = 0.7620
+Device : cuda  |  arch : GAT
+Dataset A  |  nodes=2708  in_dim=1433  classes=7
+  train=140  val=500
+Model params : 965,895
+Config : GATConfig(hidden_dim=256, num_heads=8, num_layers=3, dropout=0.6, attn_dropout=0.6, leaky_slope=0.2, lr=0.005, weight_decay=0.0005, epochs=2000, patience=30, eval_every=10, eta_min=1e-05, label_smoothing=0.1)
+Epoch    1/2000  loss=3.3235  train=0.1429  val=0.3140  [0.5s]
+  ↑ best val=0.3140  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   10/2000  loss=1.3267  train=0.1643  val=0.0860  [0.6s]
+Epoch   20/2000  loss=0.9719  train=0.3071  val=0.1840  [0.7s]
+Epoch   30/2000  loss=0.7849  train=0.7786  val=0.4100  [0.8s]
+  ↑ best val=0.4100  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   40/2000  loss=0.8196  train=0.9643  val=0.6120  [1.0s]
+  ↑ best val=0.6120  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   50/2000  loss=0.6526  train=0.9929  val=0.7500  [1.2s]
+  ↑ best val=0.7500  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   60/2000  loss=0.7124  train=1.0000  val=0.7740  [1.3s]
+  ↑ best val=0.7740  saved -> ./best_models/aiy257584_model_A.pt
+Epoch   70/2000  loss=0.6621  train=1.0000  val=0.7720  [1.5s]
+Epoch   80/2000  loss=0.6523  train=1.0000  val=0.7720  [1.6s]
+Epoch   90/2000  loss=0.6264  train=1.0000  val=0.7720  [1.8s]
+Epoch  100/2000  loss=0.6262  train=1.0000  val=0.7740  [1.9s]
+Epoch  110/2000  loss=0.6093  train=1.0000  val=0.7800  [2.1s]
+  ↑ best val=0.7800  saved -> ./best_models/aiy257584_model_A.pt
+Epoch  120/2000  loss=0.5680  train=1.0000  val=0.7660  [2.3s]
+Epoch  130/2000  loss=0.5834  train=1.0000  val=0.7740  [2.4s]
+Epoch  140/2000  loss=0.5613  train=1.0000  val=0.7680  [2.6s]
+Epoch  150/2000  loss=0.5715  train=1.0000  val=0.7640  [2.7s]
+Epoch  160/2000  loss=0.5685  train=1.0000  val=0.7680  [2.9s]
+Epoch  170/2000  loss=0.5488  train=1.0000  val=0.7660  [3.1s]
+Epoch  180/2000  loss=0.5368  train=1.0000  val=0.7640  [3.2s]
+Epoch  190/2000  loss=0.5429  train=1.0000  val=0.7700  [3.4s]
+Epoch  200/2000  loss=0.5618  train=1.0000  val=0.7620  [3.5s]
+Epoch  210/2000  loss=0.5464  train=1.0000  val=0.7720  [3.7s]
+Epoch  220/2000  loss=0.5363  train=1.0000  val=0.7760  [3.9s]
+Epoch  230/2000  loss=0.5396  train=1.0000  val=0.7680  [4.0s]
+Epoch  240/2000  loss=0.5290  train=1.0000  val=0.7660  [4.2s]
+Epoch  250/2000  loss=0.5189  train=1.0000  val=0.7580  [4.3s]
+Epoch  260/2000  loss=0.5377  train=1.0000  val=0.7500  [4.5s]
+Epoch  270/2000  loss=0.5397  train=1.0000  val=0.7620  [4.7s]
+Epoch  280/2000  loss=0.5253  train=1.0000  val=0.7640  [4.8s]
+Epoch  290/2000  loss=0.5538  train=1.0000  val=0.7520  [5.0s]
+Epoch  300/2000  loss=0.5251  train=1.0000  val=0.7580  [5.1s]
+Epoch  310/2000  loss=0.5336  train=1.0000  val=0.7580  [5.3s]
+Epoch  320/2000  loss=0.5322  train=1.0000  val=0.7560  [5.5s]
+Epoch  330/2000  loss=0.5151  train=1.0000  val=0.7620  [5.7s]
+Epoch  340/2000  loss=0.5507  train=1.0000  val=0.7540  [5.9s]
+Epoch  350/2000  loss=0.5338  train=1.0000  val=0.7620  [6.1s]
+Epoch  360/2000  loss=0.5252  train=1.0000  val=0.7580  [6.3s]
+Epoch  370/2000  loss=0.5197  train=1.0000  val=0.7600  [6.5s]
+Epoch  380/2000  loss=0.5257  train=1.0000  val=0.7480  [6.7s]
+Epoch  390/2000  loss=0.5166  train=1.0000  val=0.7520  [6.9s]
+Epoch  400/2000  loss=0.5332  train=1.0000  val=0.7500  [7.1s]
+Epoch  410/2000  loss=0.5177  train=1.0000  val=0.7540  [7.3s]
+Early stopping at epoch 410 (no improvement for 30 evals)
+
+Done. Best val accuracy = 0.7800

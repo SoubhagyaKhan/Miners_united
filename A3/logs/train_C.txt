@@ -1,0 +1,56 @@
+(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3$ bash train.sh
+Device: cuda
+Loading dataset C ...
+  nodes=3199  train_pos=3918
+  valid_pos=227
+Config: LinkPredConfig(hidden_dim=256, num_layers=3, dropout=0.3, decoder_hidden=128, margin=1.0, lr=0.001, weight_decay=1e-05, epochs=300, patience=30, eval_every=5, eta_min=1e-05, hits_k=50)
+LinkPredictor  hidden=256  params=2,103,681
+Epoch    1/300  loss=1.9183  Hits@50=0.0352  [0.3s]
+  ↑ Best Hits@50=0.0352  saved → ./best_models/aiy257584_model_C.pt
+Epoch    5/300  loss=1.9100  Hits@50=0.0220  [0.3s]
+Epoch   10/300  loss=1.8878  Hits@50=0.0352  [0.4s]
+Epoch   15/300  loss=1.8728  Hits@50=0.0308  [0.5s]
+Epoch   20/300  loss=1.8415  Hits@50=0.0352  [0.6s]
+Epoch   25/300  loss=1.8009  Hits@50=0.0264  [0.7s]
+Epoch   30/300  loss=1.7455  Hits@50=0.0352  [0.7s]
+Epoch   35/300  loss=1.6583  Hits@50=0.0485  [0.8s]
+  ↑ Best Hits@50=0.0485  saved → ./best_models/aiy257584_model_C.pt
+Epoch   40/300  loss=1.5639  Hits@50=0.0308  [1.0s]
+Epoch   45/300  loss=1.4180  Hits@50=0.0441  [1.2s]
+Epoch   50/300  loss=1.2730  Hits@50=0.0308  [1.3s]
+Epoch   55/300  loss=1.1209  Hits@50=0.0661  [1.4s]
+  ↑ Best Hits@50=0.0661  saved → ./best_models/aiy257584_model_C.pt
+Epoch   60/300  loss=1.0051  Hits@50=0.0529  [1.5s]
+Epoch   65/300  loss=0.9130  Hits@50=0.0308  [1.6s]
+Epoch   70/300  loss=0.8766  Hits@50=0.0220  [1.7s]
+Epoch   75/300  loss=0.8037  Hits@50=0.0176  [1.8s]
+Epoch   80/300  loss=0.7412  Hits@50=0.0088  [1.9s]
+Epoch   85/300  loss=0.6925  Hits@50=0.0132  [2.0s]
+Epoch   90/300  loss=0.6472  Hits@50=0.0132  [2.1s]
+Epoch   95/300  loss=0.6227  Hits@50=0.0088  [2.2s]
+Epoch  100/300  loss=0.5977  Hits@50=0.0132  [2.4s]
+Epoch  105/300  loss=0.5606  Hits@50=0.0088  [2.5s]
+Epoch  110/300  loss=0.5484  Hits@50=0.0088  [2.6s]
+Epoch  115/300  loss=0.5167  Hits@50=0.0044  [2.7s]
+Epoch  120/300  loss=0.4847  Hits@50=0.0044  [2.8s]
+Epoch  125/300  loss=0.4464  Hits@50=0.0044  [2.9s]
+Epoch  130/300  loss=0.4341  Hits@50=0.0000  [3.0s]
+Epoch  135/300  loss=0.4327  Hits@50=0.0000  [3.1s]
+Epoch  140/300  loss=0.3922  Hits@50=0.0000  [3.2s]
+Epoch  145/300  loss=0.3846  Hits@50=0.0000  [3.3s]
+Epoch  150/300  loss=0.3630  Hits@50=0.0000  [3.4s]
+Epoch  155/300  loss=0.3451  Hits@50=0.0044  [3.5s]
+Epoch  160/300  loss=0.3430  Hits@50=0.0088  [3.6s]
+Epoch  165/300  loss=0.3397  Hits@50=0.0088  [3.7s]
+Epoch  170/300  loss=0.3170  Hits@50=0.0088  [3.8s]
+Epoch  175/300  loss=0.2999  Hits@50=0.0176  [3.9s]
+Epoch  180/300  loss=0.3158  Hits@50=0.0220  [4.0s]
+Epoch  185/300  loss=0.2906  Hits@50=0.0132  [4.1s]
+Epoch  190/300  loss=0.3106  Hits@50=0.0220  [4.2s]
+Epoch  195/300  loss=0.2997  Hits@50=0.0220  [4.3s]
+Epoch  200/300  loss=0.2975  Hits@50=0.0220  [4.4s]
+Epoch  205/300  loss=0.2632  Hits@50=0.0264  [4.5s]
+Early stopping at epoch 205 (no improvement for 30 evals)
+
+Done. Best Hits@50 = 0.0661
+Model saved to ./best_models/aiy257584_model_C.pt
