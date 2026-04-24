@@ -1,4 +1,5 @@
-A3/public_datasets
-A3/best_models
+A3/q2/public_datasets
+A3/q2/best_models
 A3/__pycache__
 A3/**/__pycache__
+A3/**/**/__pycache__

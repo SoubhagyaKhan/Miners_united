@@ -1,5 +1,5 @@
 """
-config.py  --  COL761 A3 Q2 hyperparameter configuration
+config.py  --  Q2 hyperparameter configuration
 """
 
 from dataclasses import dataclass, field
