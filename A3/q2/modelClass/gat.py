@@ -17,10 +17,10 @@ class GATModel(nn.Module):
     """
     Multi-layer GAT using PyG's GATConv.
 
-    Layer layout (hidden_dim=256, num_heads=8, out_per_head=32):
-        - Intermediate: GATConv(in, 32, heads=8, concat=True)  -> [N, 256]
-        - Last:         GATConv(in, 256, heads=8, concat=False) -> [N, 256]
-    BN is always BatchNorm1d(256) = BatchNorm1d(hidden_dim).
+    Layer layout (hidden_dim=256, num_heads=4, out_per_head=64):
+        - Intermediate: GATConv(in, 64, heads=4, concat=True)  -> [N, 256]
+        - Last:         GATConv(in, 64, heads=4, concat=False) -> [N, 256]
+    BN is always LayerNorm(256) = LayerNorm(hidden_dim).
 
     predict.py interface: model(x, edge_index) -> logits [N, num_classes]
     """
@@ -30,7 +30,7 @@ class GATModel(nn.Module):
         self.cfg = cfg
 
         heads        = cfg.num_heads
-        out_per_head = cfg.hidden_dim // heads   # 256 // 8 = 32
+        out_per_head = cfg.hidden_dim // heads   # 256 // 4 = 64
 
         self.convs = nn.ModuleList()
         self.norms = nn.ModuleList()
@@ -58,7 +58,7 @@ class GATModel(nn.Module):
                     add_self_loops=True,
                 ))
             # BN dim is always hidden_dim (both branches produce hidden_dim)
-            self.norms.append(nn.BatchNorm1d(cfg.hidden_dim))
+            self.norms.append(nn.LayerNorm(cfg.hidden_dim))
 
         self.dropout    = nn.Dropout(cfg.dropout)
         self.classifier = nn.Linear(cfg.hidden_dim, num_classes)

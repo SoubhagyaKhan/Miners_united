@@ -11,20 +11,20 @@ from typing import List
 class GATConfig:
     # Architecture
     hidden_dim:       int   = 256
-    num_heads:        int   = 8          # multi-head attention
-    num_layers:       int   = 3
+    num_heads:        int   = 4          # multi-head attention
+    num_layers:       int   = 4
     dropout:          float = 0.6
     attn_dropout:     float = 0.6
     leaky_slope:      float = 0.2
 
     # Training
-    lr:               float = 0.005
+    lr:               float = 5e-4
     weight_decay:     float = 5e-4
     epochs:           int   = 2000
     patience:         int   = 30         # in eval_every units, not raw epochs
     eval_every:       int   = 10
-    eta_min:          float = 1e-4
-    label_smoothing:  float = 0.1
+    eta_min:          float = 5e-6
+    label_smoothing:  float = 0.0
 
 
 @dataclass

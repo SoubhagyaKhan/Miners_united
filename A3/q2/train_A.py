@@ -16,7 +16,7 @@ import argparse
 import os
 import sys
 import time
-
+import random, numpy as np
 import torch
 import torch.nn.functional as F
 from torch_geometric.transforms import NormalizeFeatures
@@ -29,6 +29,14 @@ from config import GATConfig, GCNConfig
 from modelClass import GATModel, GCNModel
 from load_dataset import load_dataset
 
+def set_seed(seed=42):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    # makes CUDA deterministic (slight slowdown)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 def parse_args():
     p = argparse.ArgumentParser()
@@ -66,6 +74,7 @@ def evaluate(model, data, labeled_nodes, mask):
 
 def main():
     args   = parse_args()
+    set_seed(seed=42)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device : {device}  |  arch : {args.arch.upper()}")
 
