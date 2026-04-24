@@ -66,28 +66,33 @@ class GraphSAGEConfig:
     val_batch_size:   int         = 4096
 
 
-# Dataset C  --  link prediction
 @dataclass
 class LinkPredConfig:
-    # Architecture
-    # use_encoder=False: skip GCN, use raw precomputed embeddings directly
-    # (x is already a GNN embedding -- adding another GCN hurts on 3199 nodes)
-    use_encoder:      bool  = False
-    hidden_dim:       int   = 256
-    num_layers:       int   = 2          # only used when use_encoder=True
+    # ── Encoder ───────────────────────────────────────────────────────────────
+    proj_dim:         int   = 256        # input projection: 3703 → proj_dim
+    hidden_dim:       int   = 256        # SAGE layer output dim
+    num_layers:       int   = 2          # SAGE layers (keep at 2 for sparse graph)
+    sage_aggr:        str   = "mean"     # "mean" | "max"  (SAGEConv aggr)
     dropout:          float = 0.3
-    decoder_hidden:   int   = 128
-
-    # Loss weights
-    margin:           float = 0.5
-
-    # Training
-    lr:               float = 0.003
-    weight_decay:     float = 1e-4
-    epochs:           int   = 200
-    patience:         int   = 20         # in eval_every units (= 100 epochs)
+ 
+    # ── Decoder ───────────────────────────────────────────────────────────────
+    decoder_type:     str   = "hadamard" # "hadamard" | "concat"
+    decoder_hidden:   int   = 128        # MLP hidden dim
+    decoder_layers:   int   = 2          # MLP depth
+ 
+    # ── Loss ──────────────────────────────────────────────────────────────────
+    bce_weight:       float = 1.0
+    margin_weight:    float = 0.5
+    margin:           float = 1.0
+    neg_ratio:        int   = 3          # negatives per positive (oversampling)
+ 
+    # ── Training ──────────────────────────────────────────────────────────────
+    lr:               float = 1e-3
+    weight_decay:     float = 1e-5
+    epochs:           int   = 500
+    patience:         int   = 50         # in eval_every units
     eval_every:       int   = 5
-    eta_min:          float = 1e-4
-
-    # Hits@K evaluation
+    eta_min:          float = 1e-6
+ 
+    # ── Eval ──────────────────────────────────────────────────────────────────
     hits_k:           int   = 50

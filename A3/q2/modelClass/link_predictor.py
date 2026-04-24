@@ -1,97 +1,150 @@
 """
-models/link_predictor.py  --  Link predictor for Dataset C
+models/link_predictor.py  --  GraphSAGE encoder + flexible MLP decoder
 
-Key insight: x is already precomputed GNN embeddings ("gnn_feature").
-Running another GCN on top adds noise and causes overfit on 3199 nodes.
+Architecture
+------------
+    Input projection : Linear(in_dim, proj_dim)   -- 3703 → 256
+    Encoder          : 2-layer SAGEConv            -- 256  → 256
+    Decoder          : Hadamard or Concat + MLP    -- scores [E]
 
-Two modes controlled by LinkPredConfig.use_encoder:
-  False (default): MLP-only decoder on raw features  <- use this for C
-  True:            GCN encoder + MLP decoder          <- legacy
+predict.py interface
+--------------------
+    model(x, edge_index, edge_pairs) -> FloatTensor [E]
+    where edge_pairs : [E, 2], each row is (u, v) node indices
 """
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch_geometric.nn import GCNConv
+from torch_geometric.nn import SAGEConv
 
 from config import LinkPredConfig
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# MLP helper
+# ─────────────────────────────────────────────────────────────────────────────
+
+def build_mlp(in_dim: int, hidden_dim: int, num_layers: int, dropout: float) -> nn.Module:
+    """
+    Builds:  Linear → [LayerNorm → ReLU → Dropout → Linear] × (num_layers-1) → Linear(1)
+    """
+    assert num_layers >= 1
+    layers = []
+    cur_dim = in_dim
+    for i in range(num_layers - 1):
+        layers += [
+            nn.Linear(cur_dim, hidden_dim),
+            nn.LayerNorm(hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+        ]
+        cur_dim = hidden_dim
+    layers.append(nn.Linear(cur_dim, 1))   # final scalar output
+    return nn.Sequential(*layers)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Model
+# ─────────────────────────────────────────────────────────────────────────────
+
 class LinkPredictor(nn.Module):
-    def __init__(self, in_dim: int, hidden_or_cfg=None, dropout: float = None):
+
+    def __init__(self, in_dim: int, cfg: LinkPredConfig):
         super().__init__()
+        self.cfg = cfg
 
-        if isinstance(hidden_or_cfg, LinkPredConfig):
-            cfg = hidden_or_cfg
-        elif hidden_or_cfg is None:
-            cfg = LinkPredConfig()
-        else:
-            cfg = LinkPredConfig(
-                hidden_dim=int(hidden_or_cfg),
-                dropout=dropout if dropout is not None else 0.3,
-            )
-
-        self.cfg        = cfg
-        self.use_encoder = cfg.use_encoder
-
-        if self.use_encoder:
-            # GCN encoder path
-            self.encoder_convs = nn.ModuleList()
-            self.encoder_norms = nn.ModuleList()
-            for i in range(cfg.num_layers):
-                in_ch = in_dim if i == 0 else cfg.hidden_dim
-                self.encoder_convs.append(GCNConv(in_ch, cfg.hidden_dim))
-                self.encoder_norms.append(nn.BatchNorm1d(cfg.hidden_dim))
-            self.input_proj      = nn.Linear(in_dim, cfg.hidden_dim, bias=False)
-            self.encoder_dropout = nn.Dropout(cfg.dropout)
-            feat_dim = cfg.hidden_dim
-        else:
-            # No encoder: use raw features directly
-            # Project to hidden_dim first to reduce 3703-dim input
-            self.feat_proj = nn.Sequential(
-                nn.Linear(in_dim, cfg.hidden_dim),
-                nn.BatchNorm1d(cfg.hidden_dim),
-                nn.ReLU(),
-                nn.Dropout(cfg.dropout),
-            )
-            feat_dim = cfg.hidden_dim
-
-        # Decoder: [u, v, u*v, |u-v|] -> score
-        # Input dim: feat_dim * 4
-        dec_h = cfg.decoder_hidden
-        self.decoder = nn.Sequential(
-            nn.Linear(feat_dim * 4, dec_h),
-            nn.BatchNorm1d(dec_h),
+        # ── Input projection ─────────────────────────────────────────────────
+        # Reduces 3703-dim pre-computed embeddings to proj_dim before GNN.
+        # Acts as a learned dimensionality reduction + regulariser.
+        self.input_proj = nn.Sequential(
+            nn.Linear(in_dim, cfg.proj_dim),
+            nn.LayerNorm(cfg.proj_dim),
             nn.ReLU(),
             nn.Dropout(cfg.dropout),
-            nn.Linear(dec_h, dec_h // 2),
-            nn.BatchNorm1d(dec_h // 2),
-            nn.ReLU(),
-            nn.Dropout(cfg.dropout),
-            nn.Linear(dec_h // 2, 1),
         )
 
-    def encode(self, x, edge_index):
-        if self.use_encoder:
-            for i, (conv, norm) in enumerate(zip(self.encoder_convs, self.encoder_norms)):
-                x_in = x
-                x    = conv(x, edge_index)
-                x    = norm(x)
-                x    = F.relu(x)
-                x    = x + (self.input_proj(x_in) if i == 0 else x_in)
-                x    = self.encoder_dropout(x)
-            return x
+        # ── Encoder: 2-layer GraphSAGE ───────────────────────────────────────
+        # SAGEConv concatenates self + aggregated neighbour → good for sparse graphs.
+        # Layer dims: proj_dim → hidden_dim → hidden_dim
+        dims = [cfg.proj_dim] + [cfg.hidden_dim] * cfg.num_layers
+
+        self.convs = nn.ModuleList([
+            SAGEConv(dims[i], dims[i + 1], aggr=cfg.sage_aggr)
+            for i in range(cfg.num_layers)
+        ])
+
+        self.norms = nn.ModuleList([
+            nn.LayerNorm(cfg.hidden_dim)
+            for _ in range(cfg.num_layers)
+        ])
+
+        self.encoder_dropout = nn.Dropout(cfg.dropout)
+
+        # ── Decoder ──────────────────────────────────────────────────────────
+        # Hadamard: pair_dim = hidden_dim   (element-wise product, symmetric)
+        # Concat  : pair_dim = 2*hidden_dim (concatenation, asymmetric)
+        assert cfg.decoder_type in ("hadamard", "concat"), \
+            f"decoder_type must be 'hadamard' or 'concat', got '{cfg.decoder_type}'"
+
+        pair_dim = cfg.hidden_dim if cfg.decoder_type == "hadamard" else cfg.hidden_dim * 2
+
+        self.decoder = build_mlp(
+            in_dim=pair_dim,
+            hidden_dim=cfg.decoder_hidden,
+            num_layers=cfg.decoder_layers,
+            dropout=cfg.dropout,
+        )
+
+    # ── Forward passes ───────────────────────────────────────────────────────
+
+    def encode(self, x: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
+        """
+        x          : [N, in_dim]   (raw node features, N = x.shape[0] = 3327)
+        edge_index : [2, E]
+        returns      [N, hidden_dim]
+        """
+        h = self.input_proj(x)                         # [N, proj_dim]
+
+        for i, (conv, norm) in enumerate(zip(self.convs, self.norms)):
+            residual = h
+            h = conv(h, edge_index)                    # [N, hidden_dim]
+            h = norm(h)
+            h = F.relu(h)
+            if i > 0:                                  # skip layer-0 residual
+                h = h + residual                       # (dims match from layer 1+)
+            h = self.encoder_dropout(h)
+
+        return h                                       # [N, hidden_dim]
+
+    def decode(self, z: torch.Tensor, edge_pairs: torch.Tensor) -> torch.Tensor:
+        """
+        z          : [N, hidden_dim]
+        edge_pairs : [E, 2]
+        returns      [E]   raw logits (no sigmoid — BCEWithLogitsLoss handles it)
+        """
+        u = edge_pairs[:, 0]                           # [E]
+        v = edge_pairs[:, 1]                           # [E]
+
+        z_u = z[u]                                     # [E, hidden_dim]
+        z_v = z[v]                                     # [E, hidden_dim]
+
+        if self.cfg.decoder_type == "hadamard":
+            pair = z_u * z_v                           # [E, hidden_dim]
         else:
-            return self.feat_proj(x)
+            pair = torch.cat([z_u, z_v], dim=1)        # [E, 2*hidden_dim]
 
-    def decode(self, z, edge_pairs):
-        src = edge_pairs[:, 0]
-        dst = edge_pairs[:, 1]
-        u   = z[src]
-        v   = z[dst]
-        h   = torch.cat([u, v, u * v, (u - v).abs()], dim=1)   # [u, v, hadamard, L1]
-        return self.decoder(h).squeeze(1)
+        return self.decoder(pair).squeeze(1)           # [E]
 
-    def forward(self, x, edge_index, edge_pairs):
+    def forward(
+        self,
+        x: torch.Tensor,
+        edge_index: torch.Tensor,
+        edge_pairs: torch.Tensor,
+    ) -> torch.Tensor:
+        """
+        Full forward: encode all nodes, then decode requested pairs.
+        Called by predict.py as: model(dataset.x, dataset.edge_index, edge_pairs)
+        """
         z = self.encode(x, edge_index)
-        return self.decode(z, edge_pairs)
+        return self.decode(z, edge_pairs)              # [E]

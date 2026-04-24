@@ -1,344 +1,105 @@
-
 (dm_a3) trishanku@skywarp:~/dm/Miners_united/A3/q2$ bash train.sh
-Device: cuda
-Config: LinkPredConfig(use_encoder=False, hidden_dim=256, num_layers=2, dropout=0.3, decoder_hidden=128, margin=0.5, lr=0.003, weight_decay=0.0001, epochs=200, patience=20, eval_every=5, eta_min=0.0001, hits_k=50)
+Device  : cuda
+Decoder : hadamard
+Config  : LinkPredConfig(proj_dim=256, hidden_dim=256, num_layers=2, sage_aggr='mean', dropout=0.3, decoder_type='hadamard', decoder_hidden=128, decoder_layers=2, bce_weight=1.0, margin_weight=0.5, margin=1.0, neg_ratio=3, lr=0.001, weight_decay=1e-05, epochs=500, patience=50, eval_every=5, eta_min=1e-06, hits_k=50)
+
 Loading dataset C ...
-  nodes=3199  x=torch.Size([3327, 3703])  train_pos=3918
-  valid_pos=227  valid_neg=torch.Size([227, 500])
+  true nodes = 3327  (loader reports 3199)
+  in_dim     = 3703
+  train_pos  = 3918
+  train_neg  = 3870
+  valid_pos  = 227
+  valid_neg  = torch.Size([227, 500])
 
-=======================================================
-  Seed 1/10
-=======================================================
-  [seed 0] Ep    1  loss=1.5110  Hits@50=0.0352  lr=3.00e-03  [0.3s]
-  ↑ New global best=0.0352  saved → ./best_models/aiy257584_model_C.pt
-  [seed 0] Ep    5  loss=1.4715  Hits@50=0.0441  lr=3.00e-03  [0.3s]
-  ↑ New global best=0.0441  saved → ./best_models/aiy257584_model_C.pt
-  [seed 0] Ep   10  loss=1.4280  Hits@50=0.0441  lr=2.98e-03  [0.4s]
-  [seed 0] Ep   15  loss=1.3629  Hits@50=0.1057  lr=2.96e-03  [0.4s]
-  ↑ New global best=0.1057  saved → ./best_models/aiy257584_model_C.pt
-  [seed 0] Ep   20  loss=1.2467  Hits@50=0.2511  lr=2.93e-03  [0.5s]
-  ↑ New global best=0.2511  saved → ./best_models/aiy257584_model_C.pt
-  [seed 0] Ep   25  loss=1.0976  Hits@50=0.1762  lr=2.89e-03  [0.5s]
-  [seed 0] Ep   30  loss=0.9917  Hits@50=0.1410  lr=2.84e-03  [0.5s]
-  [seed 0] Ep   35  loss=0.8844  Hits@50=0.1586  lr=2.79e-03  [0.6s]
-  [seed 0] Ep   40  loss=0.7812  Hits@50=0.1542  lr=2.72e-03  [0.6s]
-  [seed 0] Ep   45  loss=0.7070  Hits@50=0.1410  lr=2.65e-03  [0.6s]
-  [seed 0] Ep   50  loss=0.5744  Hits@50=0.1366  lr=2.58e-03  [0.7s]
-  [seed 0] Ep   55  loss=0.4944  Hits@50=0.1233  lr=2.49e-03  [0.7s]
-  [seed 0] Ep   60  loss=0.4035  Hits@50=0.1145  lr=2.40e-03  [0.7s]
-  [seed 0] Ep   65  loss=0.3353  Hits@50=0.1013  lr=2.31e-03  [0.8s]
-  [seed 0] Ep   70  loss=0.3044  Hits@50=0.1366  lr=2.21e-03  [0.8s]
-  [seed 0] Ep   75  loss=0.2430  Hits@50=0.1366  lr=2.10e-03  [0.8s]
-  [seed 0] Ep   80  loss=0.2257  Hits@50=0.1233  lr=2.00e-03  [0.9s]
-  [seed 0] Ep   85  loss=0.1986  Hits@50=0.1233  lr=1.89e-03  [0.9s]
-  [seed 0] Ep   90  loss=0.1765  Hits@50=0.1278  lr=1.78e-03  [0.9s]
-  [seed 0] Ep   95  loss=0.1588  Hits@50=0.1366  lr=1.66e-03  [1.0s]
-  [seed 0] Ep  100  loss=0.1494  Hits@50=0.1101  lr=1.55e-03  [1.0s]
-  [seed 0] Ep  105  loss=0.1419  Hits@50=0.1101  lr=1.44e-03  [1.0s]
-  [seed 0] Ep  110  loss=0.1321  Hits@50=0.1322  lr=1.32e-03  [1.1s]
-  [seed 0] Ep  115  loss=0.1224  Hits@50=0.1189  lr=1.21e-03  [1.1s]
-  [seed 0] Ep  120  loss=0.1133  Hits@50=0.1013  lr=1.10e-03  [1.1s]
-  [seed 0] Early stopping at epoch 120
-  Seed 1 best=0.2511  global best=0.2511
+LinkPredictor params : 1,245,697
+Epoch    1/500  loss=1.9241  Hits@50=0.0352  [0.3s]
+  ↑ best Hits@50=0.0352  saved -> ./best_models/aiy257584_model_C.pt
+Epoch    5/500  loss=1.7049  Hits@50=0.0573  [0.3s]
+  ↑ best Hits@50=0.0573  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   10/500  loss=1.4471  Hits@50=0.0661  [0.4s]
+  ↑ best Hits@50=0.0661  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   15/500  loss=1.1918  Hits@50=0.0529  [0.6s]
+Epoch   20/500  loss=0.9940  Hits@50=0.0573  [0.7s]
+Epoch   25/500  loss=0.8254  Hits@50=0.0529  [0.8s]
+Epoch   30/500  loss=0.6848  Hits@50=0.0749  [1.0s]
+  ↑ best Hits@50=0.0749  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   35/500  loss=0.5861  Hits@50=0.1101  [1.1s]
+  ↑ best Hits@50=0.1101  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   40/500  loss=0.4609  Hits@50=0.1586  [1.2s]
+  ↑ best Hits@50=0.1586  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   45/500  loss=0.3691  Hits@50=0.1498  [1.4s]
+Epoch   50/500  loss=0.2992  Hits@50=0.1894  [1.5s]
+  ↑ best Hits@50=0.1894  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   55/500  loss=0.2459  Hits@50=0.1850  [1.6s]
+Epoch   60/500  loss=0.1867  Hits@50=0.2026  [1.8s]
+  ↑ best Hits@50=0.2026  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   65/500  loss=0.1352  Hits@50=0.2335  [1.9s]
+  ↑ best Hits@50=0.2335  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   70/500  loss=0.1257  Hits@50=0.2423  [2.0s]
+  ↑ best Hits@50=0.2423  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   75/500  loss=0.1031  Hits@50=0.2599  [2.2s]
+  ↑ best Hits@50=0.2599  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   80/500  loss=0.0839  Hits@50=0.2467  [2.3s]
+Epoch   85/500  loss=0.0747  Hits@50=0.2247  [2.4s]
+Epoch   90/500  loss=0.0699  Hits@50=0.2070  [2.6s]
+Epoch   95/500  loss=0.0644  Hits@50=0.2203  [2.7s]
+Epoch  100/500  loss=0.0576  Hits@50=0.2335  [2.8s]
+Epoch  105/500  loss=0.0489  Hits@50=0.2687  [2.9s]
+  ↑ best Hits@50=0.2687  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  110/500  loss=0.0548  Hits@50=0.2511  [3.1s]
+Epoch  115/500  loss=0.0398  Hits@50=0.2555  [3.2s]
+Epoch  120/500  loss=0.0369  Hits@50=0.2731  [3.3s]
+  ↑ best Hits@50=0.2731  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  125/500  loss=0.0321  Hits@50=0.2643  [3.5s]
+Epoch  130/500  loss=0.0322  Hits@50=0.2731  [3.6s]
+Epoch  135/500  loss=0.0408  Hits@50=0.2599  [3.8s]
+Epoch  140/500  loss=0.0291  Hits@50=0.2467  [3.9s]
+Epoch  145/500  loss=0.0240  Hits@50=0.2379  [4.0s]
+Epoch  150/500  loss=0.0230  Hits@50=0.2511  [4.2s]
+Epoch  155/500  loss=0.0244  Hits@50=0.2247  [4.3s]
+Epoch  160/500  loss=0.0212  Hits@50=0.2423  [4.4s]
+Epoch  165/500  loss=0.0222  Hits@50=0.2379  [4.6s]
+Epoch  170/500  loss=0.0184  Hits@50=0.2379  [4.7s]
+Epoch  175/500  loss=0.0166  Hits@50=0.2291  [4.8s]
+Epoch  180/500  loss=0.0150  Hits@50=0.2115  [5.0s]
+Epoch  185/500  loss=0.0194  Hits@50=0.2291  [5.1s]
+Epoch  190/500  loss=0.0127  Hits@50=0.2247  [5.2s]
+Epoch  195/500  loss=0.0131  Hits@50=0.2379  [5.4s]
+Epoch  200/500  loss=0.0154  Hits@50=0.2555  [5.5s]
+Epoch  205/500  loss=0.0129  Hits@50=0.2335  [5.6s]
+Epoch  210/500  loss=0.0110  Hits@50=0.2115  [5.8s]
+Epoch  215/500  loss=0.0112  Hits@50=0.2203  [5.9s]
+Epoch  220/500  loss=0.0159  Hits@50=0.2115  [6.0s]
+Epoch  225/500  loss=0.0150  Hits@50=0.2247  [6.2s]
+Epoch  230/500  loss=0.0183  Hits@50=0.2070  [6.3s]
+Epoch  235/500  loss=0.0063  Hits@50=0.1982  [6.4s]
+Epoch  240/500  loss=0.0120  Hits@50=0.2247  [6.6s]
+Epoch  245/500  loss=0.0148  Hits@50=0.2115  [6.7s]
+Epoch  250/500  loss=0.0087  Hits@50=0.2115  [6.9s]
+Epoch  255/500  loss=0.0090  Hits@50=0.2291  [7.0s]
+Epoch  260/500  loss=0.0090  Hits@50=0.2291  [7.1s]
+Epoch  265/500  loss=0.0117  Hits@50=0.2247  [7.3s]
+Epoch  270/500  loss=0.0101  Hits@50=0.2026  [7.4s]
+Epoch  275/500  loss=0.0072  Hits@50=0.2203  [7.5s]
+Epoch  280/500  loss=0.0118  Hits@50=0.2203  [7.7s]
+Epoch  285/500  loss=0.0098  Hits@50=0.2203  [7.8s]
+Epoch  290/500  loss=0.0097  Hits@50=0.1982  [7.9s]
+Epoch  295/500  loss=0.0042  Hits@50=0.2159  [8.1s]
+Epoch  300/500  loss=0.0050  Hits@50=0.2115  [8.2s]
+Epoch  305/500  loss=0.0071  Hits@50=0.2026  [8.3s]
+Epoch  310/500  loss=0.0104  Hits@50=0.2026  [8.5s]
+Epoch  315/500  loss=0.0056  Hits@50=0.1938  [8.6s]
+Epoch  320/500  loss=0.0051  Hits@50=0.1938  [8.7s]
+Epoch  325/500  loss=0.0064  Hits@50=0.2070  [8.9s]
+Epoch  330/500  loss=0.0054  Hits@50=0.1982  [9.0s]
+Epoch  335/500  loss=0.0052  Hits@50=0.1982  [9.1s]
+Epoch  340/500  loss=0.0063  Hits@50=0.2026  [9.3s]
+Epoch  345/500  loss=0.0042  Hits@50=0.2159  [9.4s]
+Epoch  350/500  loss=0.0050  Hits@50=0.2070  [9.6s]
+Epoch  355/500  loss=0.0060  Hits@50=0.2070  [9.7s]
+Epoch  360/500  loss=0.0095  Hits@50=0.2070  [9.8s]
+Epoch  365/500  loss=0.0042  Hits@50=0.2026  [10.0s]
+Epoch  370/500  loss=0.0053  Hits@50=0.2115  [10.1s]
+Early stopping at epoch 370 (no improvement for 50 evals)
 
-=======================================================
-  Seed 2/10
-=======================================================
-  [seed 1] Ep    1  loss=1.4785  Hits@50=0.0308  lr=3.00e-03  [0.0s]
-  [seed 1] Ep    5  loss=1.4418  Hits@50=0.0837  lr=3.00e-03  [0.0s]
-  [seed 1] Ep   10  loss=1.3733  Hits@50=0.2203  lr=2.98e-03  [0.1s]
-  [seed 1] Ep   15  loss=1.2503  Hits@50=0.2555  lr=2.96e-03  [0.1s]
-  ↑ New global best=0.2555  saved → ./best_models/aiy257584_model_C.pt
-  [seed 1] Ep   20  loss=1.1406  Hits@50=0.1982  lr=2.93e-03  [0.1s]
-  [seed 1] Ep   25  loss=1.0876  Hits@50=0.1542  lr=2.89e-03  [0.2s]
-  [seed 1] Ep   30  loss=0.9201  Hits@50=0.1454  lr=2.84e-03  [0.2s]
-  [seed 1] Ep   35  loss=0.8250  Hits@50=0.1630  lr=2.79e-03  [0.3s]
-  [seed 1] Ep   40  loss=0.7199  Hits@50=0.1454  lr=2.72e-03  [0.3s]
-  [seed 1] Ep   45  loss=0.6175  Hits@50=0.1762  lr=2.65e-03  [0.3s]
-  [seed 1] Ep   50  loss=0.5105  Hits@50=0.1586  lr=2.58e-03  [0.4s]
-  [seed 1] Ep   55  loss=0.4839  Hits@50=0.1938  lr=2.49e-03  [0.4s]
-  [seed 1] Ep   60  loss=0.4042  Hits@50=0.2247  lr=2.40e-03  [0.4s]
-  [seed 1] Ep   65  loss=0.3398  Hits@50=0.1630  lr=2.31e-03  [0.5s]
-  [seed 1] Ep   70  loss=0.2925  Hits@50=0.1542  lr=2.21e-03  [0.5s]
-  [seed 1] Ep   75  loss=0.2732  Hits@50=0.1145  lr=2.10e-03  [0.6s]
-  [seed 1] Ep   80  loss=0.2478  Hits@50=0.0793  lr=2.00e-03  [0.6s]
-  [seed 1] Ep   85  loss=0.2242  Hits@50=0.0749  lr=1.89e-03  [0.6s]
-  [seed 1] Ep   90  loss=0.1987  Hits@50=0.0793  lr=1.78e-03  [0.7s]
-  [seed 1] Ep   95  loss=0.1621  Hits@50=0.0793  lr=1.66e-03  [0.7s]
-  [seed 1] Ep  100  loss=0.1469  Hits@50=0.0793  lr=1.55e-03  [0.8s]
-  [seed 1] Ep  105  loss=0.1537  Hits@50=0.0881  lr=1.44e-03  [0.8s]
-  [seed 1] Ep  110  loss=0.1472  Hits@50=0.0837  lr=1.32e-03  [0.8s]
-  [seed 1] Ep  115  loss=0.1521  Hits@50=0.0925  lr=1.21e-03  [0.9s]
-  [seed 1] Early stopping at epoch 115
-  Seed 2 best=0.2555  global best=0.2555
-
-=======================================================
-  Seed 3/10
-=======================================================
-  [seed 2] Ep    1  loss=1.5031  Hits@50=0.0793  lr=3.00e-03  [0.0s]
-  [seed 2] Ep    5  loss=1.4381  Hits@50=0.0749  lr=3.00e-03  [0.0s]
-  [seed 2] Ep   10  loss=1.3230  Hits@50=0.2026  lr=2.98e-03  [0.1s]
-  [seed 2] Ep   15  loss=1.1888  Hits@50=0.2291  lr=2.96e-03  [0.2s]
-  [seed 2] Ep   20  loss=1.1009  Hits@50=0.1806  lr=2.93e-03  [0.2s]
-  [seed 2] Ep   25  loss=1.0585  Hits@50=0.1189  lr=2.89e-03  [0.3s]
-  [seed 2] Ep   30  loss=0.9742  Hits@50=0.1057  lr=2.84e-03  [0.3s]
-  [seed 2] Ep   35  loss=0.8385  Hits@50=0.1013  lr=2.79e-03  [0.4s]
-  [seed 2] Ep   40  loss=0.8078  Hits@50=0.1101  lr=2.72e-03  [0.4s]
-  [seed 2] Ep   45  loss=0.6480  Hits@50=0.1145  lr=2.65e-03  [0.4s]
-  [seed 2] Ep   50  loss=0.5578  Hits@50=0.1322  lr=2.58e-03  [0.5s]
-  [seed 2] Ep   55  loss=0.4742  Hits@50=0.1278  lr=2.49e-03  [0.5s]
-  [seed 2] Ep   60  loss=0.3830  Hits@50=0.1189  lr=2.40e-03  [0.6s]
-  [seed 2] Ep   65  loss=0.3460  Hits@50=0.0969  lr=2.31e-03  [0.6s]
-  [seed 2] Ep   70  loss=0.3349  Hits@50=0.1013  lr=2.21e-03  [0.7s]
-  [seed 2] Ep   75  loss=0.2630  Hits@50=0.0881  lr=2.10e-03  [0.8s]
-  [seed 2] Ep   80  loss=0.2300  Hits@50=0.0793  lr=2.00e-03  [0.8s]
-  [seed 2] Ep   85  loss=0.2205  Hits@50=0.0749  lr=1.89e-03  [0.9s]
-  [seed 2] Ep   90  loss=0.1802  Hits@50=0.0661  lr=1.78e-03  [0.9s]
-  [seed 2] Ep   95  loss=0.1631  Hits@50=0.0705  lr=1.66e-03  [1.0s]
-  [seed 2] Ep  100  loss=0.1830  Hits@50=0.0749  lr=1.55e-03  [1.1s]
-  [seed 2] Ep  105  loss=0.1376  Hits@50=0.0749  lr=1.44e-03  [1.1s]
-  [seed 2] Ep  110  loss=0.1472  Hits@50=0.0705  lr=1.32e-03  [1.2s]
-  [seed 2] Ep  115  loss=0.1406  Hits@50=0.0705  lr=1.21e-03  [1.3s]
-  [seed 2] Early stopping at epoch 115
-  Seed 3 best=0.2291  global best=0.2555
-
-=======================================================
-  Seed 4/10
-=======================================================
-  [seed 3] Ep    1  loss=1.4766  Hits@50=0.0396  lr=3.00e-03  [0.0s]
-  [seed 3] Ep    5  loss=1.4358  Hits@50=0.1101  lr=3.00e-03  [0.1s]
-  [seed 3] Ep   10  loss=1.3304  Hits@50=0.2335  lr=2.98e-03  [0.1s]
-  [seed 3] Ep   15  loss=1.1546  Hits@50=0.2423  lr=2.96e-03  [0.2s]
-  [seed 3] Ep   20  loss=1.0524  Hits@50=0.2026  lr=2.93e-03  [0.2s]
-  [seed 3] Ep   25  loss=0.9569  Hits@50=0.1410  lr=2.89e-03  [0.3s]
-  [seed 3] Ep   30  loss=0.8776  Hits@50=0.1145  lr=2.84e-03  [0.3s]
-  [seed 3] Ep   35  loss=0.7976  Hits@50=0.0925  lr=2.79e-03  [0.4s]
-  [seed 3] Ep   40  loss=0.7027  Hits@50=0.0881  lr=2.72e-03  [0.4s]
-  [seed 3] Ep   45  loss=0.6304  Hits@50=0.0881  lr=2.65e-03  [0.4s]
-  [seed 3] Ep   50  loss=0.5481  Hits@50=0.1057  lr=2.58e-03  [0.5s]
-  [seed 3] Ep   55  loss=0.4877  Hits@50=0.1233  lr=2.49e-03  [0.5s]
-  [seed 3] Ep   60  loss=0.4050  Hits@50=0.1322  lr=2.40e-03  [0.6s]
-  [seed 3] Ep   65  loss=0.3701  Hits@50=0.1145  lr=2.31e-03  [0.6s]
-  [seed 3] Ep   70  loss=0.3065  Hits@50=0.1366  lr=2.21e-03  [0.6s]
-  [seed 3] Ep   75  loss=0.2814  Hits@50=0.1410  lr=2.10e-03  [0.7s]
-  [seed 3] Ep   80  loss=0.2638  Hits@50=0.1322  lr=2.00e-03  [0.7s]
-  [seed 3] Ep   85  loss=0.2228  Hits@50=0.1145  lr=1.89e-03  [0.8s]
-  [seed 3] Ep   90  loss=0.2456  Hits@50=0.1145  lr=1.78e-03  [0.8s]
-  [seed 3] Ep   95  loss=0.2079  Hits@50=0.0925  lr=1.66e-03  [0.8s]
-  [seed 3] Ep  100  loss=0.1801  Hits@50=0.0969  lr=1.55e-03  [0.9s]
-  [seed 3] Ep  105  loss=0.1757  Hits@50=0.1057  lr=1.44e-03  [0.9s]
-  [seed 3] Ep  110  loss=0.1646  Hits@50=0.1278  lr=1.32e-03  [0.9s]
-  [seed 3] Ep  115  loss=0.1697  Hits@50=0.1410  lr=1.21e-03  [1.0s]
-  [seed 3] Early stopping at epoch 115
-  Seed 4 best=0.2423  global best=0.2555
-
-=======================================================
-  Seed 5/10
-=======================================================
-  [seed 4] Ep    1  loss=1.4994  Hits@50=0.0441  lr=3.00e-03  [0.0s]
-  [seed 4] Ep    5  loss=1.4537  Hits@50=0.0617  lr=3.00e-03  [0.0s]
-  [seed 4] Ep   10  loss=1.3585  Hits@50=0.1542  lr=2.98e-03  [0.1s]
-  [seed 4] Ep   15  loss=1.2020  Hits@50=0.2643  lr=2.96e-03  [0.1s]
-  ↑ New global best=0.2643  saved → ./best_models/aiy257584_model_C.pt
-  [seed 4] Ep   20  loss=1.0618  Hits@50=0.2070  lr=2.93e-03  [0.2s]
-  [seed 4] Ep   25  loss=0.9779  Hits@50=0.1586  lr=2.89e-03  [0.2s]
-  [seed 4] Ep   30  loss=0.8904  Hits@50=0.1542  lr=2.84e-03  [0.2s]
-  [seed 4] Ep   35  loss=0.7950  Hits@50=0.1233  lr=2.79e-03  [0.3s]
-  [seed 4] Ep   40  loss=0.7097  Hits@50=0.1586  lr=2.72e-03  [0.3s]
-  [seed 4] Ep   45  loss=0.6150  Hits@50=0.1806  lr=2.65e-03  [0.4s]
-  [seed 4] Ep   50  loss=0.5270  Hits@50=0.1542  lr=2.58e-03  [0.4s]
-  [seed 4] Ep   55  loss=0.4762  Hits@50=0.1278  lr=2.49e-03  [0.5s]
-  [seed 4] Ep   60  loss=0.4164  Hits@50=0.1189  lr=2.40e-03  [0.5s]
-  [seed 4] Ep   65  loss=0.3765  Hits@50=0.1013  lr=2.31e-03  [0.6s]
-  [seed 4] Ep   70  loss=0.3151  Hits@50=0.1145  lr=2.21e-03  [0.6s]
-  [seed 4] Ep   75  loss=0.2899  Hits@50=0.1013  lr=2.10e-03  [0.6s]
-  [seed 4] Ep   80  loss=0.2766  Hits@50=0.1101  lr=2.00e-03  [0.7s]
-  [seed 4] Ep   85  loss=0.2375  Hits@50=0.1278  lr=1.89e-03  [0.7s]
-  [seed 4] Ep   90  loss=0.2357  Hits@50=0.1013  lr=1.78e-03  [0.8s]
-  [seed 4] Ep   95  loss=0.2069  Hits@50=0.1057  lr=1.66e-03  [0.8s]
-  [seed 4] Ep  100  loss=0.1852  Hits@50=0.1057  lr=1.55e-03  [0.9s]
-  [seed 4] Ep  105  loss=0.1654  Hits@50=0.1057  lr=1.44e-03  [0.9s]
-  [seed 4] Ep  110  loss=0.1619  Hits@50=0.1278  lr=1.32e-03  [0.9s]
-  [seed 4] Ep  115  loss=0.1597  Hits@50=0.1410  lr=1.21e-03  [1.0s]
-  [seed 4] Early stopping at epoch 115
-  Seed 5 best=0.2643  global best=0.2643
-
-=======================================================
-  Seed 6/10
-=======================================================
-  [seed 5] Ep    1  loss=1.5185  Hits@50=0.0485  lr=3.00e-03  [0.0s]
-  [seed 5] Ep    5  loss=1.4514  Hits@50=0.0396  lr=3.00e-03  [0.0s]
-  [seed 5] Ep   10  loss=1.3474  Hits@50=0.0793  lr=2.98e-03  [0.1s]
-  [seed 5] Ep   15  loss=1.1896  Hits@50=0.1278  lr=2.96e-03  [0.1s]
-  [seed 5] Ep   20  loss=1.0477  Hits@50=0.1278  lr=2.93e-03  [0.2s]
-  [seed 5] Ep   25  loss=0.9520  Hits@50=0.1278  lr=2.89e-03  [0.2s]
-  [seed 5] Ep   30  loss=0.8594  Hits@50=0.1630  lr=2.84e-03  [0.2s]
-  [seed 5] Ep   35  loss=0.7782  Hits@50=0.1762  lr=2.79e-03  [0.3s]
-  [seed 5] Ep   40  loss=0.6677  Hits@50=0.1806  lr=2.72e-03  [0.3s]
-  [seed 5] Ep   45  loss=0.5890  Hits@50=0.2026  lr=2.65e-03  [0.4s]
-  [seed 5] Ep   50  loss=0.5348  Hits@50=0.2026  lr=2.58e-03  [0.4s]
-  [seed 5] Ep   55  loss=0.4511  Hits@50=0.2159  lr=2.49e-03  [0.4s]
-  [seed 5] Ep   60  loss=0.3867  Hits@50=0.2070  lr=2.40e-03  [0.5s]
-  [seed 5] Ep   65  loss=0.3334  Hits@50=0.1586  lr=2.31e-03  [0.5s]
-  [seed 5] Ep   70  loss=0.2819  Hits@50=0.1366  lr=2.21e-03  [0.5s]
-  [seed 5] Ep   75  loss=0.2659  Hits@50=0.1410  lr=2.10e-03  [0.6s]
-  [seed 5] Ep   80  loss=0.2448  Hits@50=0.1586  lr=2.00e-03  [0.6s]
-  [seed 5] Ep   85  loss=0.1992  Hits@50=0.1806  lr=1.89e-03  [0.7s]
-  [seed 5] Ep   90  loss=0.1976  Hits@50=0.1762  lr=1.78e-03  [0.7s]
-  [seed 5] Ep   95  loss=0.1876  Hits@50=0.1938  lr=1.66e-03  [0.7s]
-  [seed 5] Ep  100  loss=0.1603  Hits@50=0.1850  lr=1.55e-03  [0.8s]
-  [seed 5] Ep  105  loss=0.1653  Hits@50=0.1806  lr=1.44e-03  [0.8s]
-  [seed 5] Ep  110  loss=0.1369  Hits@50=0.1542  lr=1.32e-03  [0.9s]
-  [seed 5] Ep  115  loss=0.1282  Hits@50=0.1674  lr=1.21e-03  [0.9s]
-  [seed 5] Ep  120  loss=0.1178  Hits@50=0.1718  lr=1.10e-03  [0.9s]
-  [seed 5] Ep  125  loss=0.1319  Hits@50=0.1850  lr=9.95e-04  [1.0s]
-  [seed 5] Ep  130  loss=0.1119  Hits@50=0.1454  lr=8.92e-04  [1.0s]
-  [seed 5] Ep  135  loss=0.1183  Hits@50=0.1542  lr=7.92e-04  [1.1s]
-  [seed 5] Ep  140  loss=0.1146  Hits@50=0.1410  lr=6.98e-04  [1.1s]
-  [seed 5] Ep  145  loss=0.0964  Hits@50=0.1542  lr=6.08e-04  [1.1s]
-  [seed 5] Ep  150  loss=0.1034  Hits@50=0.1498  lr=5.25e-04  [1.2s]
-  [seed 5] Ep  155  loss=0.0916  Hits@50=0.1366  lr=4.47e-04  [1.2s]
-  [seed 5] Early stopping at epoch 155
-  Seed 6 best=0.2159  global best=0.2643
-
-=======================================================
-  Seed 7/10
-=======================================================
-  [seed 6] Ep    1  loss=1.4889  Hits@50=0.0617  lr=3.00e-03  [0.0s]
-  [seed 6] Ep    5  loss=1.4369  Hits@50=0.0441  lr=3.00e-03  [0.0s]
-  [seed 6] Ep   10  loss=1.3430  Hits@50=0.1410  lr=2.98e-03  [0.1s]
-  [seed 6] Ep   15  loss=1.1868  Hits@50=0.2247  lr=2.96e-03  [0.1s]
-  [seed 6] Ep   20  loss=1.0634  Hits@50=0.2203  lr=2.93e-03  [0.2s]
-  [seed 6] Ep   25  loss=0.9549  Hits@50=0.1718  lr=2.89e-03  [0.2s]
-  [seed 6] Ep   30  loss=0.8733  Hits@50=0.1718  lr=2.84e-03  [0.2s]
-  [seed 6] Ep   35  loss=0.7638  Hits@50=0.1762  lr=2.79e-03  [0.3s]
-  [seed 6] Ep   40  loss=0.6923  Hits@50=0.2115  lr=2.72e-03  [0.3s]
-  [seed 6] Ep   45  loss=0.5789  Hits@50=0.1938  lr=2.65e-03  [0.4s]
-  [seed 6] Ep   50  loss=0.4875  Hits@50=0.2159  lr=2.58e-03  [0.4s]
-  [seed 6] Ep   55  loss=0.4348  Hits@50=0.2291  lr=2.49e-03  [0.4s]
-  [seed 6] Ep   60  loss=0.3833  Hits@50=0.1806  lr=2.40e-03  [0.5s]
-  [seed 6] Ep   65  loss=0.3423  Hits@50=0.1322  lr=2.31e-03  [0.5s]
-  [seed 6] Ep   70  loss=0.2824  Hits@50=0.1101  lr=2.21e-03  [0.6s]
-  [seed 6] Ep   75  loss=0.2642  Hits@50=0.1366  lr=2.10e-03  [0.6s]
-  [seed 6] Ep   80  loss=0.2523  Hits@50=0.1366  lr=2.00e-03  [0.6s]
-  [seed 6] Ep   85  loss=0.2143  Hits@50=0.1366  lr=1.89e-03  [0.7s]
-  [seed 6] Ep   90  loss=0.2096  Hits@50=0.1410  lr=1.78e-03  [0.7s]
-  [seed 6] Ep   95  loss=0.1963  Hits@50=0.1278  lr=1.66e-03  [0.8s]
-  [seed 6] Ep  100  loss=0.2127  Hits@50=0.1101  lr=1.55e-03  [0.8s]
-  [seed 6] Ep  105  loss=0.1718  Hits@50=0.1013  lr=1.44e-03  [0.8s]
-  [seed 6] Ep  110  loss=0.1598  Hits@50=0.1013  lr=1.32e-03  [0.9s]
-  [seed 6] Ep  115  loss=0.1483  Hits@50=0.0881  lr=1.21e-03  [0.9s]
-  [seed 6] Ep  120  loss=0.1673  Hits@50=0.0881  lr=1.10e-03  [1.0s]
-  [seed 6] Ep  125  loss=0.1365  Hits@50=0.0837  lr=9.95e-04  [1.0s]
-  [seed 6] Ep  130  loss=0.1342  Hits@50=0.1145  lr=8.92e-04  [1.0s]
-  [seed 6] Ep  135  loss=0.1157  Hits@50=0.0925  lr=7.92e-04  [1.1s]
-  [seed 6] Ep  140  loss=0.1284  Hits@50=0.1013  lr=6.98e-04  [1.1s]
-  [seed 6] Ep  145  loss=0.1124  Hits@50=0.0793  lr=6.08e-04  [1.2s]
-  [seed 6] Ep  150  loss=0.1126  Hits@50=0.0881  lr=5.25e-04  [1.2s]
-  [seed 6] Ep  155  loss=0.1450  Hits@50=0.1013  lr=4.47e-04  [1.2s]
-  [seed 6] Early stopping at epoch 155
-  Seed 7 best=0.2291  global best=0.2643
-
-=======================================================
-  Seed 8/10
-=======================================================
-  [seed 7] Ep    1  loss=1.4917  Hits@50=0.0264  lr=3.00e-03  [0.0s]
-  [seed 7] Ep    5  loss=1.4461  Hits@50=0.0485  lr=3.00e-03  [0.0s]
-  [seed 7] Ep   10  loss=1.3241  Hits@50=0.1938  lr=2.98e-03  [0.1s]
-  [seed 7] Ep   15  loss=1.1368  Hits@50=0.2335  lr=2.96e-03  [0.1s]
-  [seed 7] Ep   20  loss=1.0300  Hits@50=0.1894  lr=2.93e-03  [0.2s]
-  [seed 7] Ep   25  loss=0.9515  Hits@50=0.1145  lr=2.89e-03  [0.2s]
-  [seed 7] Ep   30  loss=0.8746  Hits@50=0.1057  lr=2.84e-03  [0.2s]
-  [seed 7] Ep   35  loss=0.7843  Hits@50=0.1189  lr=2.79e-03  [0.3s]
-  [seed 7] Ep   40  loss=0.6917  Hits@50=0.1278  lr=2.72e-03  [0.3s]
-  [seed 7] Ep   45  loss=0.6240  Hits@50=0.1542  lr=2.65e-03  [0.4s]
-  [seed 7] Ep   50  loss=0.5569  Hits@50=0.1278  lr=2.58e-03  [0.4s]
-  [seed 7] Ep   55  loss=0.4661  Hits@50=0.1410  lr=2.49e-03  [0.4s]
-  [seed 7] Ep   60  loss=0.4170  Hits@50=0.1718  lr=2.40e-03  [0.5s]
-  [seed 7] Ep   65  loss=0.3875  Hits@50=0.1278  lr=2.31e-03  [0.5s]
-  [seed 7] Ep   70  loss=0.3205  Hits@50=0.1410  lr=2.21e-03  [0.6s]
-  [seed 7] Ep   75  loss=0.3079  Hits@50=0.1322  lr=2.10e-03  [0.6s]
-  [seed 7] Ep   80  loss=0.2731  Hits@50=0.1278  lr=2.00e-03  [0.6s]
-  [seed 7] Ep   85  loss=0.2468  Hits@50=0.1233  lr=1.89e-03  [0.7s]
-  [seed 7] Ep   90  loss=0.2168  Hits@50=0.1410  lr=1.78e-03  [0.7s]
-  [seed 7] Ep   95  loss=0.2063  Hits@50=0.1233  lr=1.66e-03  [0.8s]
-  [seed 7] Ep  100  loss=0.2031  Hits@50=0.1145  lr=1.55e-03  [0.8s]
-  [seed 7] Ep  105  loss=0.2050  Hits@50=0.1057  lr=1.44e-03  [0.8s]
-  [seed 7] Ep  110  loss=0.1723  Hits@50=0.0969  lr=1.32e-03  [0.9s]
-  [seed 7] Ep  115  loss=0.1656  Hits@50=0.0793  lr=1.21e-03  [0.9s]
-  [seed 7] Early stopping at epoch 115
-  Seed 8 best=0.2335  global best=0.2643
-
-=======================================================
-  Seed 9/10
-=======================================================
-  [seed 8] Ep    1  loss=1.5129  Hits@50=0.0485  lr=3.00e-03  [0.0s]
-  [seed 8] Ep    5  loss=1.4424  Hits@50=0.0793  lr=3.00e-03  [0.0s]
-  [seed 8] Ep   10  loss=1.3233  Hits@50=0.1850  lr=2.98e-03  [0.1s]
-  [seed 8] Ep   15  loss=1.1775  Hits@50=0.1982  lr=2.96e-03  [0.1s]
-  [seed 8] Ep   20  loss=1.1072  Hits@50=0.2203  lr=2.93e-03  [0.2s]
-  [seed 8] Ep   25  loss=0.9722  Hits@50=0.1586  lr=2.89e-03  [0.2s]
-  [seed 8] Ep   30  loss=0.9143  Hits@50=0.0881  lr=2.84e-03  [0.2s]
-  [seed 8] Ep   35  loss=1.3623  Hits@50=0.1057  lr=2.79e-03  [0.3s]
-  [seed 8] Ep   40  loss=1.2887  Hits@50=0.1101  lr=2.72e-03  [0.3s]
-  [seed 8] Ep   45  loss=0.6930  Hits@50=0.1189  lr=2.65e-03  [0.4s]
-  [seed 8] Ep   50  loss=0.6051  Hits@50=0.0925  lr=2.58e-03  [0.4s]
-  [seed 8] Ep   55  loss=0.5208  Hits@50=0.0969  lr=2.49e-03  [0.4s]
-  [seed 8] Ep   60  loss=0.4678  Hits@50=0.1762  lr=2.40e-03  [0.5s]
-  [seed 8] Ep   65  loss=0.4066  Hits@50=0.1806  lr=2.31e-03  [0.5s]
-  [seed 8] Ep   70  loss=0.3420  Hits@50=0.1718  lr=2.21e-03  [0.5s]
-  [seed 8] Ep   75  loss=0.3315  Hits@50=0.1366  lr=2.10e-03  [0.6s]
-  [seed 8] Ep   80  loss=0.2815  Hits@50=0.0969  lr=2.00e-03  [0.6s]
-  [seed 8] Ep   85  loss=0.2487  Hits@50=0.0925  lr=1.89e-03  [0.7s]
-  [seed 8] Ep   90  loss=0.2281  Hits@50=0.0925  lr=1.78e-03  [0.7s]
-  [seed 8] Ep   95  loss=0.2043  Hits@50=0.0749  lr=1.66e-03  [0.7s]
-  [seed 8] Ep  100  loss=0.1988  Hits@50=0.0793  lr=1.55e-03  [0.8s]
-  [seed 8] Ep  105  loss=0.1939  Hits@50=0.0881  lr=1.44e-03  [0.8s]
-  [seed 8] Ep  110  loss=0.1875  Hits@50=0.0793  lr=1.32e-03  [0.9s]
-  [seed 8] Ep  115  loss=0.1673  Hits@50=0.0661  lr=1.21e-03  [0.9s]
-  [seed 8] Ep  120  loss=0.1416  Hits@50=0.0793  lr=1.10e-03  [0.9s]
-  [seed 8] Early stopping at epoch 120
-  Seed 9 best=0.2203  global best=0.2643
-
-=======================================================
-  Seed 10/10
-=======================================================
-  [seed 9] Ep    1  loss=1.5549  Hits@50=0.0441  lr=3.00e-03  [0.0s]
-  [seed 9] Ep    5  loss=1.4323  Hits@50=0.0264  lr=3.00e-03  [0.0s]
-  [seed 9] Ep   10  loss=1.3352  Hits@50=0.0881  lr=2.98e-03  [0.1s]
-  [seed 9] Ep   15  loss=1.1812  Hits@50=0.1586  lr=2.96e-03  [0.1s]
-  [seed 9] Ep   20  loss=1.0455  Hits@50=0.2026  lr=2.93e-03  [0.2s]
-  [seed 9] Ep   25  loss=0.9480  Hits@50=0.1806  lr=2.89e-03  [0.2s]
-  [seed 9] Ep   30  loss=0.8650  Hits@50=0.1718  lr=2.84e-03  [0.2s]
-  [seed 9] Ep   35  loss=0.7777  Hits@50=0.1410  lr=2.79e-03  [0.3s]
-  [seed 9] Ep   40  loss=0.6918  Hits@50=0.1542  lr=2.72e-03  [0.3s]
-  [seed 9] Ep   45  loss=0.5978  Hits@50=0.1410  lr=2.65e-03  [0.3s]
-  [seed 9] Ep   50  loss=0.5323  Hits@50=0.1718  lr=2.58e-03  [0.4s]
-  [seed 9] Ep   55  loss=0.4543  Hits@50=0.2070  lr=2.49e-03  [0.4s]
-  [seed 9] Ep   60  loss=0.4125  Hits@50=0.2335  lr=2.40e-03  [0.5s]
-  [seed 9] Ep   65  loss=0.3646  Hits@50=0.2335  lr=2.31e-03  [0.5s]
-  [seed 9] Ep   70  loss=0.3109  Hits@50=0.1806  lr=2.21e-03  [0.5s]
-  [seed 9] Ep   75  loss=0.2767  Hits@50=0.1410  lr=2.10e-03  [0.6s]
-  [seed 9] Ep   80  loss=0.2423  Hits@50=0.1410  lr=2.00e-03  [0.6s]
-  [seed 9] Ep   85  loss=0.2358  Hits@50=0.1586  lr=1.89e-03  [0.6s]
-  [seed 9] Ep   90  loss=0.2067  Hits@50=0.1894  lr=1.78e-03  [0.7s]
-  [seed 9] Ep   95  loss=0.2051  Hits@50=0.2070  lr=1.66e-03  [0.7s]
-  [seed 9] Ep  100  loss=0.1787  Hits@50=0.2026  lr=1.55e-03  [0.8s]
-  [seed 9] Ep  105  loss=0.1683  Hits@50=0.1982  lr=1.44e-03  [0.8s]
-  [seed 9] Ep  110  loss=0.1719  Hits@50=0.1982  lr=1.32e-03  [0.8s]
-  [seed 9] Ep  115  loss=0.1430  Hits@50=0.2026  lr=1.21e-03  [0.9s]
-  [seed 9] Ep  120  loss=0.1390  Hits@50=0.1762  lr=1.10e-03  [0.9s]
-  [seed 9] Ep  125  loss=0.1443  Hits@50=0.1498  lr=9.95e-04  [0.9s]
-  [seed 9] Ep  130  loss=0.1298  Hits@50=0.1718  lr=8.92e-04  [1.0s]
-  [seed 9] Ep  135  loss=0.1340  Hits@50=0.1718  lr=7.92e-04  [1.0s]
-  [seed 9] Ep  140  loss=0.1243  Hits@50=0.1850  lr=6.98e-04  [1.1s]
-  [seed 9] Ep  145  loss=0.1176  Hits@50=0.1630  lr=6.08e-04  [1.1s]
-  [seed 9] Ep  150  loss=0.1109  Hits@50=0.1806  lr=5.25e-04  [1.1s]
-  [seed 9] Ep  155  loss=0.1202  Hits@50=0.1630  lr=4.47e-04  [1.2s]
-  [seed 9] Ep  160  loss=0.1059  Hits@50=0.1718  lr=3.77e-04  [1.2s]
-  [seed 9] Early stopping at epoch 160
-  Seed 10 best=0.2335  global best=0.2643
-
-Done. Best Hits@50 across all seeds = 0.2643
-Model saved to ./best_models/aiy257584_model_C.pt
-(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3/q2$ 
+Done. Best Hits@50 = 0.2731
