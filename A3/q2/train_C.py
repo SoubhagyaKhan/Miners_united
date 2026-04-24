@@ -21,16 +21,15 @@ from config import LinkPredConfig
 from modelClass.link_predictor import LinkPredictor
 from load_dataset import load_dataset
 
-
 def set_seed(seed=42):
-    random.seed(seed); np.random.seed(seed)
-    torch.manual_seed(seed); torch.cuda.manual_seed_all(seed)
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark     = False
 
-
 # ── FIX 2: warmup + cosine scheduler ─────────────────────────────────────────
-
 def get_scheduler(optimizer, warmup_epochs, total_epochs, eta_min):
     def lr_lambda(epoch):
         if epoch < warmup_epochs:

@@ -84,11 +84,11 @@ class LinkPredConfig:
     bce_weight:       float = 1.0
     margin_weight:    float = 0.5
     margin:           float = 1.0
-    neg_ratio:        int   = 5          # negatives per positive (oversampling)
+    neg_ratio:        int   = 50          # negatives per positive (oversampling)
  
     # ── Training ──────────────────────────────────────────────────────────────
     lr:               float = 1e-3
-    weight_decay:     float = 1e-5
+    weight_decay:     float = 1e-4
     epochs:           int   = 2000
     patience:         int   = 150         # in eval_every units
     eval_every:       int   = 5
