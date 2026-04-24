@@ -21,7 +21,7 @@ import torch
 import torch.nn.functional as F
 from torch_geometric.loader import NeighborLoader
 from sklearn.metrics import roc_auc_score
-import numpy as np
+import random, numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from modelClass import GraphSAGEModel
@@ -37,6 +37,15 @@ def parse_args():
     p.add_argument("--model_dir",   default="./models")
     p.add_argument("--kerberos",    required=True)
     return p.parse_args()
+
+def set_seed(seed=42):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    # makes CUDA deterministic (slight slowdown)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 
 def train_epoch(model, loader, optimizer, device):
@@ -113,6 +122,7 @@ def evaluate_val(model, data, labeled_nodes, val_mask, device, batch_size=4096, 
 
 def main():
     args   = parse_args()
+    set_seed(seed=42)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
 
