@@ -96,3 +96,8 @@ class LinkPredConfig:
  
     # ── Eval ──────────────────────────────────────────────────────────────────
     hits_k:           int   = 50
+
+    fixed_neg_ratio:  float = 0.5    # fraction from train_neg; rest are random
+    warmup_epochs:    int   = 20 
+    ema_alpha:        float = 0.3    # weight on current eval (higher = less smooth)
+    decoder_type:     str   = "concat"

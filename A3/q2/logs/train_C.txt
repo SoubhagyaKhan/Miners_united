@@ -1,105 +1,243 @@
 (dm_a3) trishanku@skywarp:~/dm/Miners_united/A3/q2$ bash train.sh
-Device  : cuda
-Decoder : hadamard
-Config  : LinkPredConfig(proj_dim=256, hidden_dim=256, num_layers=2, sage_aggr='mean', dropout=0.3, decoder_type='hadamard', decoder_hidden=128, decoder_layers=2, bce_weight=1.0, margin_weight=0.5, margin=1.0, neg_ratio=3, lr=0.001, weight_decay=1e-05, epochs=500, patience=50, eval_every=5, eta_min=1e-06, hits_k=50)
+Device  : cuda  |  Decoder : hadamard
+Config  : LinkPredConfig(proj_dim=256, hidden_dim=256, num_layers=2, sage_aggr='mean', dropout=0.3, decoder_type='hadamard', decoder_hidden=128, decoder_layers=2, bce_weight=1.0, margin_weight=0.5, margin=1.0, neg_ratio=3, lr=0.001, weight_decay=1e-05, epochs=500, patience=50, eval_every=5, eta_min=1e-06, hits_k=50, fixed_neg_ratio=0.5, warmup_epochs=20, ema_alpha=0.3)
 
 Loading dataset C ...
-  true nodes = 3327  (loader reports 3199)
-  in_dim     = 3703
-  train_pos  = 3918
-  train_neg  = 3870
-  valid_pos  = 227
-  valid_neg  = torch.Size([227, 500])
-
-LinkPredictor params : 1,245,697
-Epoch    1/500  loss=1.9241  Hits@50=0.0352  [0.3s]
-  ↑ best Hits@50=0.0352  saved -> ./best_models/aiy257584_model_C.pt
-Epoch    5/500  loss=1.7049  Hits@50=0.0573  [0.3s]
-  ↑ best Hits@50=0.0573  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   10/500  loss=1.4471  Hits@50=0.0661  [0.4s]
+  true nodes=3327  in_dim=3703  pos_set_size=7788
+  params=1,245,697
+Epoch    1/500  loss=1.9247  Hits@50=0.0176  EMA=0.0053  [0.4s]
+  ↑ best Hits@50=0.0176  saved -> ./best_models/aiy257584_model_C.pt
+Epoch    5/500  loss=1.8546  Hits@50=0.0529  EMA=0.0196  [0.5s]
+  ↑ best Hits@50=0.0529  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   10/500  loss=1.7439  Hits@50=0.0529  EMA=0.0296  [0.6s]
+Epoch   15/500  loss=1.5732  Hits@50=0.0661  EMA=0.0405  [0.8s]
   ↑ best Hits@50=0.0661  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   15/500  loss=1.1918  Hits@50=0.0529  [0.6s]
-Epoch   20/500  loss=0.9940  Hits@50=0.0573  [0.7s]
-Epoch   25/500  loss=0.8254  Hits@50=0.0529  [0.8s]
-Epoch   30/500  loss=0.6848  Hits@50=0.0749  [1.0s]
-  ↑ best Hits@50=0.0749  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   35/500  loss=0.5861  Hits@50=0.1101  [1.1s]
-  ↑ best Hits@50=0.1101  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   40/500  loss=0.4609  Hits@50=0.1586  [1.2s]
-  ↑ best Hits@50=0.1586  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   45/500  loss=0.3691  Hits@50=0.1498  [1.4s]
-Epoch   50/500  loss=0.2992  Hits@50=0.1894  [1.5s]
-  ↑ best Hits@50=0.1894  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   55/500  loss=0.2459  Hits@50=0.1850  [1.6s]
-Epoch   60/500  loss=0.1867  Hits@50=0.2026  [1.8s]
-  ↑ best Hits@50=0.2026  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   65/500  loss=0.1352  Hits@50=0.2335  [1.9s]
-  ↑ best Hits@50=0.2335  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   70/500  loss=0.1257  Hits@50=0.2423  [2.0s]
-  ↑ best Hits@50=0.2423  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   75/500  loss=0.1031  Hits@50=0.2599  [2.2s]
-  ↑ best Hits@50=0.2599  saved -> ./best_models/aiy257584_model_C.pt
-Epoch   80/500  loss=0.0839  Hits@50=0.2467  [2.3s]
-Epoch   85/500  loss=0.0747  Hits@50=0.2247  [2.4s]
-Epoch   90/500  loss=0.0699  Hits@50=0.2070  [2.6s]
-Epoch   95/500  loss=0.0644  Hits@50=0.2203  [2.7s]
-Epoch  100/500  loss=0.0576  Hits@50=0.2335  [2.8s]
-Epoch  105/500  loss=0.0489  Hits@50=0.2687  [2.9s]
-  ↑ best Hits@50=0.2687  saved -> ./best_models/aiy257584_model_C.pt
-Epoch  110/500  loss=0.0548  Hits@50=0.2511  [3.1s]
-Epoch  115/500  loss=0.0398  Hits@50=0.2555  [3.2s]
-Epoch  120/500  loss=0.0369  Hits@50=0.2731  [3.3s]
-  ↑ best Hits@50=0.2731  saved -> ./best_models/aiy257584_model_C.pt
-Epoch  125/500  loss=0.0321  Hits@50=0.2643  [3.5s]
-Epoch  130/500  loss=0.0322  Hits@50=0.2731  [3.6s]
-Epoch  135/500  loss=0.0408  Hits@50=0.2599  [3.8s]
-Epoch  140/500  loss=0.0291  Hits@50=0.2467  [3.9s]
-Epoch  145/500  loss=0.0240  Hits@50=0.2379  [4.0s]
-Epoch  150/500  loss=0.0230  Hits@50=0.2511  [4.2s]
-Epoch  155/500  loss=0.0244  Hits@50=0.2247  [4.3s]
-Epoch  160/500  loss=0.0212  Hits@50=0.2423  [4.4s]
-Epoch  165/500  loss=0.0222  Hits@50=0.2379  [4.6s]
-Epoch  170/500  loss=0.0184  Hits@50=0.2379  [4.7s]
-Epoch  175/500  loss=0.0166  Hits@50=0.2291  [4.8s]
-Epoch  180/500  loss=0.0150  Hits@50=0.2115  [5.0s]
-Epoch  185/500  loss=0.0194  Hits@50=0.2291  [5.1s]
-Epoch  190/500  loss=0.0127  Hits@50=0.2247  [5.2s]
-Epoch  195/500  loss=0.0131  Hits@50=0.2379  [5.4s]
-Epoch  200/500  loss=0.0154  Hits@50=0.2555  [5.5s]
-Epoch  205/500  loss=0.0129  Hits@50=0.2335  [5.6s]
-Epoch  210/500  loss=0.0110  Hits@50=0.2115  [5.8s]
-Epoch  215/500  loss=0.0112  Hits@50=0.2203  [5.9s]
-Epoch  220/500  loss=0.0159  Hits@50=0.2115  [6.0s]
-Epoch  225/500  loss=0.0150  Hits@50=0.2247  [6.2s]
-Epoch  230/500  loss=0.0183  Hits@50=0.2070  [6.3s]
-Epoch  235/500  loss=0.0063  Hits@50=0.1982  [6.4s]
-Epoch  240/500  loss=0.0120  Hits@50=0.2247  [6.6s]
-Epoch  245/500  loss=0.0148  Hits@50=0.2115  [6.7s]
-Epoch  250/500  loss=0.0087  Hits@50=0.2115  [6.9s]
-Epoch  255/500  loss=0.0090  Hits@50=0.2291  [7.0s]
-Epoch  260/500  loss=0.0090  Hits@50=0.2291  [7.1s]
-Epoch  265/500  loss=0.0117  Hits@50=0.2247  [7.3s]
-Epoch  270/500  loss=0.0101  Hits@50=0.2026  [7.4s]
-Epoch  275/500  loss=0.0072  Hits@50=0.2203  [7.5s]
-Epoch  280/500  loss=0.0118  Hits@50=0.2203  [7.7s]
-Epoch  285/500  loss=0.0098  Hits@50=0.2203  [7.8s]
-Epoch  290/500  loss=0.0097  Hits@50=0.1982  [7.9s]
-Epoch  295/500  loss=0.0042  Hits@50=0.2159  [8.1s]
-Epoch  300/500  loss=0.0050  Hits@50=0.2115  [8.2s]
-Epoch  305/500  loss=0.0071  Hits@50=0.2026  [8.3s]
-Epoch  310/500  loss=0.0104  Hits@50=0.2026  [8.5s]
-Epoch  315/500  loss=0.0056  Hits@50=0.1938  [8.6s]
-Epoch  320/500  loss=0.0051  Hits@50=0.1938  [8.7s]
-Epoch  325/500  loss=0.0064  Hits@50=0.2070  [8.9s]
-Epoch  330/500  loss=0.0054  Hits@50=0.1982  [9.0s]
-Epoch  335/500  loss=0.0052  Hits@50=0.1982  [9.1s]
-Epoch  340/500  loss=0.0063  Hits@50=0.2026  [9.3s]
-Epoch  345/500  loss=0.0042  Hits@50=0.2159  [9.4s]
-Epoch  350/500  loss=0.0050  Hits@50=0.2070  [9.6s]
-Epoch  355/500  loss=0.0060  Hits@50=0.2070  [9.7s]
-Epoch  360/500  loss=0.0095  Hits@50=0.2070  [9.8s]
-Epoch  365/500  loss=0.0042  Hits@50=0.2026  [10.0s]
-Epoch  370/500  loss=0.0053  Hits@50=0.2115  [10.1s]
-Early stopping at epoch 370 (no improvement for 50 evals)
+Epoch   20/500  loss=1.3904  Hits@50=0.1013  EMA=0.0588  [1.1s]
+  ↑ best Hits@50=0.1013  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   25/500  loss=1.2138  Hits@50=0.0749  EMA=0.0636  [1.2s]
+Epoch   30/500  loss=1.0216  Hits@50=0.1145  EMA=0.0789  [1.3s]
+  ↑ best Hits@50=0.1145  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   35/500  loss=0.9186  Hits@50=0.1542  EMA=0.1015  [1.5s]
+  ↑ best Hits@50=0.1542  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   40/500  loss=0.7677  Hits@50=0.1630  EMA=0.1199  [1.6s]
+  ↑ best Hits@50=0.1630  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   45/500  loss=0.6743  Hits@50=0.2555  EMA=0.1606  [1.8s]
+  ↑ best Hits@50=0.2555  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   50/500  loss=0.5583  Hits@50=0.2775  EMA=0.1957  [1.9s]
+  ↑ best Hits@50=0.2775  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   55/500  loss=0.4677  Hits@50=0.2819  EMA=0.2216  [2.1s]
+  ↑ best Hits@50=0.2819  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   60/500  loss=0.4156  Hits@50=0.3348  EMA=0.2555  [2.2s]
+  ↑ best Hits@50=0.3348  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   65/500  loss=0.3591  Hits@50=0.3348  EMA=0.2793  [2.3s]
+Epoch   70/500  loss=0.3263  Hits@50=0.3524  EMA=0.3012  [2.5s]
+  ↑ best Hits@50=0.3524  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   75/500  loss=0.2915  Hits@50=0.3436  EMA=0.3140  [2.6s]
+Epoch   80/500  loss=0.2648  Hits@50=0.3612  EMA=0.3281  [2.8s]
+  ↑ best Hits@50=0.3612  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   85/500  loss=0.2324  Hits@50=0.3480  EMA=0.3341  [2.9s]
+Epoch   90/500  loss=0.1975  Hits@50=0.3524  EMA=0.3396  [3.1s]
+Epoch   95/500  loss=0.2090  Hits@50=0.3216  EMA=0.3342  [3.2s]
+Epoch  100/500  loss=0.1755  Hits@50=0.3436  EMA=0.3370  [3.4s]
+Epoch  105/500  loss=0.1611  Hits@50=0.3392  EMA=0.3377  [3.5s]
+Epoch  110/500  loss=0.1717  Hits@50=0.3524  EMA=0.3421  [3.7s]
+Epoch  115/500  loss=0.1537  Hits@50=0.3480  EMA=0.3439  [3.8s]
+Epoch  120/500  loss=0.1472  Hits@50=0.3524  EMA=0.3464  [4.0s]
+Epoch  125/500  loss=0.1297  Hits@50=0.3480  EMA=0.3469  [4.1s]
+Epoch  130/500  loss=0.1263  Hits@50=0.3436  EMA=0.3459  [4.3s]
+Epoch  135/500  loss=0.1225  Hits@50=0.3568  EMA=0.3492  [4.4s]
+Epoch  140/500  loss=0.1222  Hits@50=0.3524  EMA=0.3502  [4.6s]
+Epoch  145/500  loss=0.1187  Hits@50=0.3656  EMA=0.3548  [4.8s]
+  ↑ best Hits@50=0.3656  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  150/500  loss=0.1161  Hits@50=0.3700  EMA=0.3594  [4.9s]
+  ↑ best Hits@50=0.3700  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  155/500  loss=0.1135  Hits@50=0.3392  EMA=0.3533  [5.0s]
+Epoch  160/500  loss=0.1047  Hits@50=0.3436  EMA=0.3504  [5.2s]
+Epoch  165/500  loss=0.1000  Hits@50=0.3392  EMA=0.3471  [5.3s]
+Epoch  170/500  loss=0.1080  Hits@50=0.3304  EMA=0.3421  [5.5s]
+Epoch  175/500  loss=0.0983  Hits@50=0.3348  EMA=0.3399  [5.6s]
+Epoch  180/500  loss=0.0969  Hits@50=0.3480  EMA=0.3423  [5.8s]
+Epoch  185/500  loss=0.0858  Hits@50=0.3568  EMA=0.3467  [5.9s]
+Epoch  190/500  loss=0.0926  Hits@50=0.3524  EMA=0.3484  [6.1s]
+Epoch  195/500  loss=0.0887  Hits@50=0.3436  EMA=0.3470  [6.2s]
+Epoch  200/500  loss=0.0807  Hits@50=0.3392  EMA=0.3446  [6.4s]
+Epoch  205/500  loss=0.0796  Hits@50=0.3480  EMA=0.3457  [6.5s]
+Epoch  210/500  loss=0.0859  Hits@50=0.3480  EMA=0.3464  [6.7s]
+Epoch  215/500  loss=0.0752  Hits@50=0.3348  EMA=0.3429  [6.8s]
+Epoch  220/500  loss=0.0825  Hits@50=0.3348  EMA=0.3405  [7.0s]
+Epoch  225/500  loss=0.0812  Hits@50=0.3480  EMA=0.3427  [7.2s]
+Epoch  230/500  loss=0.0702  Hits@50=0.3392  EMA=0.3417  [7.3s]
+Epoch  235/500  loss=0.0694  Hits@50=0.3480  EMA=0.3436  [7.5s]
+Epoch  240/500  loss=0.0679  Hits@50=0.3348  EMA=0.3409  [7.6s]
+Epoch  245/500  loss=0.0782  Hits@50=0.3260  EMA=0.3365  [7.8s]
+Epoch  250/500  loss=0.0755  Hits@50=0.3260  EMA=0.3333  [7.9s]
+Epoch  255/500  loss=0.0624  Hits@50=0.3260  EMA=0.3311  [8.2s]
+Epoch  260/500  loss=0.0736  Hits@50=0.3304  EMA=0.3309  [8.3s]
+Epoch  265/500  loss=0.0656  Hits@50=0.3436  EMA=0.3347  [8.4s]
+Epoch  270/500  loss=0.0670  Hits@50=0.3348  EMA=0.3347  [8.5s]
+Epoch  275/500  loss=0.0710  Hits@50=0.3348  EMA=0.3348  [8.7s]
+Epoch  280/500  loss=0.0593  Hits@50=0.3392  EMA=0.3361  [8.8s]
+Epoch  285/500  loss=0.0614  Hits@50=0.3304  EMA=0.3344  [9.0s]
+Epoch  290/500  loss=0.0653  Hits@50=0.3216  EMA=0.3305  [9.1s]
+Epoch  295/500  loss=0.0586  Hits@50=0.3216  EMA=0.3279  [9.3s]
+Epoch  300/500  loss=0.0577  Hits@50=0.3304  EMA=0.3286  [9.4s]
+Epoch  305/500  loss=0.0620  Hits@50=0.3436  EMA=0.3331  [9.6s]
+Epoch  310/500  loss=0.0558  Hits@50=0.3436  EMA=0.3363  [9.8s]
+Epoch  315/500  loss=0.0576  Hits@50=0.3480  EMA=0.3398  [10.0s]
+Epoch  320/500  loss=0.0573  Hits@50=0.3436  EMA=0.3409  [10.1s]
+Epoch  325/500  loss=0.0584  Hits@50=0.3436  EMA=0.3417  [10.2s]
+Epoch  330/500  loss=0.0543  Hits@50=0.3568  EMA=0.3463  [10.4s]
+Epoch  335/500  loss=0.0563  Hits@50=0.3480  EMA=0.3468  [10.5s]
+Epoch  340/500  loss=0.0672  Hits@50=0.3480  EMA=0.3472  [10.7s]
+Epoch  345/500  loss=0.0525  Hits@50=0.3524  EMA=0.3487  [10.8s]
+Epoch  350/500  loss=0.0564  Hits@50=0.3612  EMA=0.3525  [11.0s]
+Epoch  355/500  loss=0.0598  Hits@50=0.3568  EMA=0.3538  [11.1s]
+Epoch  360/500  loss=0.0568  Hits@50=0.3524  EMA=0.3534  [11.3s]
+Epoch  365/500  loss=0.0563  Hits@50=0.3524  EMA=0.3531  [11.4s]
+Epoch  370/500  loss=0.0516  Hits@50=0.3524  EMA=0.3529  [11.6s]
+Epoch  375/500  loss=0.0592  Hits@50=0.3568  EMA=0.3541  [11.7s]
+Epoch  380/500  loss=0.0582  Hits@50=0.3568  EMA=0.3549  [11.9s]
+Epoch  385/500  loss=0.0515  Hits@50=0.3568  EMA=0.3555  [12.0s]
+Epoch  390/500  loss=0.0602  Hits@50=0.3612  EMA=0.3572  [12.2s]
+Epoch  395/500  loss=0.0475  Hits@50=0.3612  EMA=0.3584  [12.3s]
+Epoch  400/500  loss=0.0532  Hits@50=0.3524  EMA=0.3566  [12.6s]
+Early stopping at epoch 400 (50 evals without improvement)
 
-Done. Best Hits@50 = 0.2731
+Done. Best Hits@50 = 0.3700
+(dm_a3) trishanku@skywarp:~/dm/Miners_united/A3/q2$ bash train.sh
+Device  : cuda  |  Decoder : concat
+Config  : LinkPredConfig(proj_dim=256, hidden_dim=256, num_layers=2, sage_aggr='mean', dropout=0.3, decoder_type='concat', decoder_hidden=128, decoder_layers=2, bce_weight=1.0, margin_weight=0.5, margin=1.0, neg_ratio=3, lr=0.001, weight_decay=1e-05, epochs=500, patience=50, eval_every=5, eta_min=1e-06, hits_k=50, fixed_neg_ratio=0.5, warmup_epochs=20, ema_alpha=0.3)
+
+Loading dataset C ...
+  true nodes=3327  in_dim=3703  pos_set_size=7788
+  params=1,278,465
+Epoch    1/500  loss=1.9345  Hits@50=0.0176  EMA=0.0053  [0.3s]
+  ↑ best Hits@50=0.0176  saved -> ./best_models/aiy257584_model_C.pt
+Epoch    5/500  loss=1.8520  Hits@50=0.0264  EMA=0.0116  [0.3s]
+  ↑ best Hits@50=0.0264  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   10/500  loss=1.6914  Hits@50=0.0881  EMA=0.0346  [0.5s]
+  ↑ best Hits@50=0.0881  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   15/500  loss=1.4790  Hits@50=0.1189  EMA=0.0599  [0.6s]
+  ↑ best Hits@50=0.1189  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   20/500  loss=1.3347  Hits@50=0.1322  EMA=0.0816  [0.8s]
+  ↑ best Hits@50=0.1322  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   25/500  loss=1.2268  Hits@50=0.1233  EMA=0.0941  [0.9s]
+Epoch   30/500  loss=1.0886  Hits@50=0.1145  EMA=0.1002  [1.1s]
+Epoch   35/500  loss=0.9956  Hits@50=0.1057  EMA=0.1019  [1.3s]
+Epoch   40/500  loss=0.8839  Hits@50=0.0837  EMA=0.0964  [1.4s]
+Epoch   45/500  loss=0.7557  Hits@50=0.1145  EMA=0.1019  [1.6s]
+Epoch   50/500  loss=0.6697  Hits@50=0.1366  EMA=0.1123  [1.7s]
+  ↑ best Hits@50=0.1366  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   55/500  loss=0.6025  Hits@50=0.1454  EMA=0.1222  [1.9s]
+  ↑ best Hits@50=0.1454  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   60/500  loss=0.5455  Hits@50=0.1762  EMA=0.1384  [2.0s]
+  ↑ best Hits@50=0.1762  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   65/500  loss=0.4764  Hits@50=0.2070  EMA=0.1590  [2.2s]
+  ↑ best Hits@50=0.2070  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   70/500  loss=0.4445  Hits@50=0.2247  EMA=0.1787  [2.3s]
+  ↑ best Hits@50=0.2247  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   75/500  loss=0.4040  Hits@50=0.2247  EMA=0.1925  [2.5s]
+Epoch   80/500  loss=0.3638  Hits@50=0.2423  EMA=0.2074  [2.7s]
+  ↑ best Hits@50=0.2423  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   85/500  loss=0.3365  Hits@50=0.2599  EMA=0.2232  [2.9s]
+  ↑ best Hits@50=0.2599  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   90/500  loss=0.3217  Hits@50=0.2643  EMA=0.2355  [3.0s]
+  ↑ best Hits@50=0.2643  saved -> ./best_models/aiy257584_model_C.pt
+Epoch   95/500  loss=0.2890  Hits@50=0.2863  EMA=0.2508  [3.2s]
+  ↑ best Hits@50=0.2863  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  100/500  loss=0.2676  Hits@50=0.2775  EMA=0.2588  [3.4s]
+Epoch  105/500  loss=0.2641  Hits@50=0.2775  EMA=0.2644  [3.5s]
+Epoch  110/500  loss=0.2374  Hits@50=0.2599  EMA=0.2631  [3.7s]
+Epoch  115/500  loss=0.2269  Hits@50=0.2952  EMA=0.2727  [3.9s]
+  ↑ best Hits@50=0.2952  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  120/500  loss=0.2083  Hits@50=0.3172  EMA=0.2860  [4.0s]
+  ↑ best Hits@50=0.3172  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  125/500  loss=0.2076  Hits@50=0.3128  EMA=0.2941  [4.1s]
+Epoch  130/500  loss=0.2003  Hits@50=0.3172  EMA=0.3010  [4.3s]
+Epoch  135/500  loss=0.1873  Hits@50=0.3260  EMA=0.3085  [4.5s]
+  ↑ best Hits@50=0.3260  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  140/500  loss=0.1872  Hits@50=0.3216  EMA=0.3124  [4.6s]
+Epoch  145/500  loss=0.1702  Hits@50=0.3436  EMA=0.3218  [4.8s]
+  ↑ best Hits@50=0.3436  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  150/500  loss=0.1736  Hits@50=0.3612  EMA=0.3336  [4.9s]
+  ↑ best Hits@50=0.3612  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  155/500  loss=0.1668  Hits@50=0.3524  EMA=0.3393  [5.1s]
+Epoch  160/500  loss=0.1580  Hits@50=0.3480  EMA=0.3419  [5.2s]
+Epoch  165/500  loss=0.1526  Hits@50=0.3480  EMA=0.3437  [5.4s]
+Epoch  170/500  loss=0.1438  Hits@50=0.3348  EMA=0.3410  [5.6s]
+Epoch  175/500  loss=0.1370  Hits@50=0.3392  EMA=0.3405  [5.7s]
+Epoch  180/500  loss=0.1326  Hits@50=0.3568  EMA=0.3454  [5.9s]
+Epoch  185/500  loss=0.1379  Hits@50=0.3656  EMA=0.3515  [6.0s]
+  ↑ best Hits@50=0.3656  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  190/500  loss=0.1367  Hits@50=0.3656  EMA=0.3557  [6.2s]
+Epoch  195/500  loss=0.1183  Hits@50=0.3700  EMA=0.3600  [6.3s]
+  ↑ best Hits@50=0.3700  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  200/500  loss=0.1193  Hits@50=0.3789  EMA=0.3657  [6.5s]
+  ↑ best Hits@50=0.3789  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  205/500  loss=0.1172  Hits@50=0.3789  EMA=0.3696  [6.7s]
+Epoch  210/500  loss=0.1216  Hits@50=0.3789  EMA=0.3724  [6.8s]
+Epoch  215/500  loss=0.1171  Hits@50=0.3744  EMA=0.3730  [7.0s]
+Epoch  220/500  loss=0.1091  Hits@50=0.3789  EMA=0.3748  [7.2s]
+Epoch  225/500  loss=0.1030  Hits@50=0.3789  EMA=0.3760  [7.4s]
+Epoch  230/500  loss=0.1158  Hits@50=0.3656  EMA=0.3729  [7.5s]
+Epoch  235/500  loss=0.1018  Hits@50=0.3877  EMA=0.3773  [7.6s]
+  ↑ best Hits@50=0.3877  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  240/500  loss=0.0939  Hits@50=0.3965  EMA=0.3831  [7.8s]
+  ↑ best Hits@50=0.3965  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  245/500  loss=0.1022  Hits@50=0.4053  EMA=0.3897  [8.0s]
+  ↑ best Hits@50=0.4053  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  250/500  loss=0.0959  Hits@50=0.4009  EMA=0.3931  [8.1s]
+Epoch  255/500  loss=0.1018  Hits@50=0.4053  EMA=0.3967  [8.3s]
+Epoch  260/500  loss=0.0985  Hits@50=0.3921  EMA=0.3953  [8.5s]
+Epoch  265/500  loss=0.0879  Hits@50=0.4141  EMA=0.4010  [8.6s]
+  ↑ best Hits@50=0.4141  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  270/500  loss=0.0923  Hits@50=0.4097  EMA=0.4036  [8.8s]
+Epoch  275/500  loss=0.0854  Hits@50=0.4053  EMA=0.4041  [8.9s]
+Epoch  280/500  loss=0.0899  Hits@50=0.3921  EMA=0.4005  [9.1s]
+Epoch  285/500  loss=0.0867  Hits@50=0.4053  EMA=0.4019  [9.3s]
+Epoch  290/500  loss=0.0873  Hits@50=0.3965  EMA=0.4003  [9.4s]
+Epoch  295/500  loss=0.0834  Hits@50=0.4009  EMA=0.4005  [9.6s]
+Epoch  300/500  loss=0.0792  Hits@50=0.4141  EMA=0.4046  [9.8s]
+Epoch  305/500  loss=0.0790  Hits@50=0.4097  EMA=0.4061  [9.9s]
+Epoch  310/500  loss=0.0879  Hits@50=0.4097  EMA=0.4072  [10.1s]
+Epoch  315/500  loss=0.0758  Hits@50=0.4097  EMA=0.4079  [10.3s]
+Epoch  320/500  loss=0.0735  Hits@50=0.4229  EMA=0.4124  [10.4s]
+  ↑ best Hits@50=0.4229  saved -> ./best_models/aiy257584_model_C.pt
+Epoch  325/500  loss=0.0802  Hits@50=0.4141  EMA=0.4129  [10.6s]
+Epoch  330/500  loss=0.0815  Hits@50=0.4009  EMA=0.4093  [10.7s]
+Epoch  335/500  loss=0.0760  Hits@50=0.4097  EMA=0.4094  [10.9s]
+Epoch  340/500  loss=0.0746  Hits@50=0.4141  EMA=0.4108  [11.1s]
+Epoch  345/500  loss=0.0745  Hits@50=0.4185  EMA=0.4131  [11.2s]
+Epoch  350/500  loss=0.0791  Hits@50=0.4097  EMA=0.4121  [11.4s]
+Epoch  355/500  loss=0.0751  Hits@50=0.4053  EMA=0.4101  [11.6s]
+Epoch  360/500  loss=0.0740  Hits@50=0.4009  EMA=0.4073  [11.8s]
+Epoch  365/500  loss=0.0732  Hits@50=0.4185  EMA=0.4107  [11.9s]
+Epoch  370/500  loss=0.0801  Hits@50=0.4141  EMA=0.4117  [12.1s]
+Epoch  375/500  loss=0.0679  Hits@50=0.4185  EMA=0.4137  [12.3s]
+Epoch  380/500  loss=0.0820  Hits@50=0.4185  EMA=0.4152  [12.4s]
+Epoch  385/500  loss=0.0700  Hits@50=0.4141  EMA=0.4148  [12.6s]
+Epoch  390/500  loss=0.0750  Hits@50=0.4097  EMA=0.4133  [12.7s]
+Epoch  395/500  loss=0.0747  Hits@50=0.4141  EMA=0.4135  [12.9s]
+Epoch  400/500  loss=0.0750  Hits@50=0.4141  EMA=0.4137  [13.1s]
+Epoch  405/500  loss=0.0757  Hits@50=0.4141  EMA=0.4138  [13.3s]
+Epoch  410/500  loss=0.0770  Hits@50=0.4141  EMA=0.4139  [13.4s]
+Epoch  415/500  loss=0.0767  Hits@50=0.4097  EMA=0.4126  [13.6s]
+Epoch  420/500  loss=0.0752  Hits@50=0.4141  EMA=0.4131  [13.7s]
+Epoch  425/500  loss=0.0771  Hits@50=0.4185  EMA=0.4147  [13.9s]
+Epoch  430/500  loss=0.0698  Hits@50=0.4185  EMA=0.4158  [14.1s]
+Epoch  435/500  loss=0.0693  Hits@50=0.4185  EMA=0.4166  [14.3s]
+Epoch  440/500  loss=0.0742  Hits@50=0.4185  EMA=0.4172  [14.4s]
+Epoch  445/500  loss=0.0649  Hits@50=0.4141  EMA=0.4163  [14.6s]
+Epoch  450/500  loss=0.0752  Hits@50=0.4185  EMA=0.4169  [14.7s]
+Epoch  455/500  loss=0.0688  Hits@50=0.4185  EMA=0.4174  [14.9s]
+Epoch  460/500  loss=0.0724  Hits@50=0.4185  EMA=0.4177  [15.1s]
+Epoch  465/500  loss=0.0656  Hits@50=0.4141  EMA=0.4166  [15.2s]
+Epoch  470/500  loss=0.0708  Hits@50=0.4185  EMA=0.4172  [15.4s]
+Epoch  475/500  loss=0.0704  Hits@50=0.4185  EMA=0.4176  [15.6s]
+Epoch  480/500  loss=0.0733  Hits@50=0.4185  EMA=0.4179  [15.7s]
+Epoch  485/500  loss=0.0689  Hits@50=0.4185  EMA=0.4181  [15.9s]
+Epoch  490/500  loss=0.0756  Hits@50=0.4185  EMA=0.4182  [16.1s]
+Epoch  495/500  loss=0.0747  Hits@50=0.4185  EMA=0.4183  [16.3s]
+Epoch  500/500  loss=0.0617  Hits@50=0.4185  EMA=0.4183  [16.4s]
+
+Done. Best Hits@50 = 0.4229

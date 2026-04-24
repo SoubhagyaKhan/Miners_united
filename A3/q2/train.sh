@@ -19,3 +19,4 @@ python train_C.py \
     --data_dir /home/trishanku/dm/Miners_united/A3/q2/public_datasets \
     --model_dir ./best_models \
     --kerberos aiy257584 \
+    --decoder concat
