@@ -69,34 +69,37 @@ class GraphSAGEConfig:
 @dataclass
 class LinkPredConfig:
     # ── Encoder ───────────────────────────────────────────────────────────────
-    proj_dim:         int   = 256        # input projection: 3703 → proj_dim
-    hidden_dim:       int   = 512        # SAGE layer output dim
-    num_layers:       int   = 2          # SAGE layers (keep at 2 for sparse graph)
-    sage_aggr:        str   = "mean"     # "mean" | "max"  (SAGEConv aggr)
+    proj_dim:         int   = 256
+    hidden_dim:       int   = 512
+    num_layers:       int   = 2
+    sage_aggr:        str   = "mean"
     dropout:          float = 0.3
- 
+    num_heads:        int   = 4          # ← NEW: GATv2 attention heads
+    attn_dropout:     float = 0.3        # ← NEW: GATv2 attention dropout
+
     # ── Decoder ───────────────────────────────────────────────────────────────
-    decoder_type:     str   = "concat" # "hadamard" | "concat"
-    decoder_hidden:   int   = 256        # MLP hidden dim
-    decoder_layers:   int   = 2          # MLP depth
- 
+    decoder_type:     str   = "concat"
+    decoder_hidden:   int   = 256
+    decoder_layers:   int   = 2
+    struct_dim:       int   = 32         # ← NEW: structural feature projection dim
+
     # ── Loss ──────────────────────────────────────────────────────────────────
     bce_weight:       float = 1.0
     margin_weight:    float = 0.5
     margin:           float = 1.0
-    neg_ratio:        int   = 50          # negatives per positive (oversampling)
- 
+    neg_ratio:        int   = 50
+
     # ── Training ──────────────────────────────────────────────────────────────
     lr:               float = 1e-3
     weight_decay:     float = 1e-4
     epochs:           int   = 2000
-    patience:         int   = 150         # in eval_every units
+    patience:         int   = 150
     eval_every:       int   = 5
     eta_min:          float = 1e-6
- 
+
     # ── Eval ──────────────────────────────────────────────────────────────────
     hits_k:           int   = 50
 
-    fixed_neg_ratio:  float = 0.5    # fraction from train_neg; rest are random
-    warmup_epochs:    int   = 20 
-    ema_alpha:        float = 0.3    # weight on current eval (higher = less smooth)
+    fixed_neg_ratio:  float = 0.5
+    warmup_epochs:    int   = 20
+    ema_alpha:        float = 0.3

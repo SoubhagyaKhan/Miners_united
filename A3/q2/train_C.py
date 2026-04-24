@@ -1,11 +1,13 @@
 """
-train_C.py  --  Dataset C link prediction (Hits@50)  [v2]
+train_C_ncn.py  --  Dataset C link prediction with NCN structural features
 
-Changes from v1
----------------
-    1. Mixed negatives : 50% fixed train_neg + 50% random pairs each epoch
-    2. Warmup + cosine LR
-    3. Smoothed early stopping via EMA of Hits@50
+Usage
+-----
+    python train_C_ncn.py \
+        --data_dir /absolute/path/to/public_datasets \
+        --model_dir ./best_models \
+        --kerberos YOUR_KERBEROS \
+        [--seed 42]
 """
 
 import argparse, os, sys, time, random
@@ -18,18 +20,17 @@ sys.path.insert(0, SRC_DIR)
 sys.path.insert(0, os.path.join(SRC_DIR, ".."))
 
 from config import LinkPredConfig
-from modelClass.link_predictor import LinkPredictor
+from modelClass.link_predictor import NCNLinkPredictor
 from load_dataset import load_dataset
 
+
 def set_seed(seed=42):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
+    random.seed(seed); np.random.seed(seed)
+    torch.manual_seed(seed); torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark     = False
 
-# ── FIX 2: warmup + cosine scheduler ─────────────────────────────────────────
+
 def get_scheduler(optimizer, warmup_epochs, total_epochs, eta_min):
     def lr_lambda(epoch):
         if epoch < warmup_epochs:
@@ -39,8 +40,6 @@ def get_scheduler(optimizer, warmup_epochs, total_epochs, eta_min):
         return cosine * (1.0 - eta_min) + eta_min
     return torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
 
-
-# ── FIX 1: mixed negatives ────────────────────────────────────────────────────
 
 def build_pos_set(train_pos):
     s = set()
@@ -72,14 +71,10 @@ def sample_mixed_negatives(train_neg, n_total, num_nodes, pos_set, device, fixed
     return torch.cat([fixed, rnd], dim=0)
 
 
-# ── Metrics ───────────────────────────────────────────────────────────────────
-
 def hits_at_k(pos_scores, neg_scores, k=50):
     n_neg_higher = (neg_scores > pos_scores.unsqueeze(1)).sum(dim=1)
     return (n_neg_higher < k).float().mean().item()
 
-
-# ── Train / Eval ──────────────────────────────────────────────────────────────
 
 def train_epoch(model, dataset, optimizer, cfg, device, pos_set, num_nodes):
     model.train()
@@ -121,18 +116,17 @@ def evaluate(model, dataset, cfg, device):
     neg_edges = dataset.valid_neg.to(device)
     P, K, _  = neg_edges.shape
     pos_s = model(dataset.x, dataset.edge_index, pos_edges)
-    neg_s = model(dataset.x, dataset.edge_index, neg_edges.view(P*K, 2)).view(P, K)
+    neg_s = model(
+        dataset.x, dataset.edge_index, neg_edges.view(P*K, 2)
+    ).view(P, K)
     return hits_at_k(pos_s, neg_s, k=cfg.hits_k)
 
-
-# ── Main ──────────────────────────────────────────────────────────────────────
 
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--data_dir",  required=True)
     p.add_argument("--model_dir", default="./best_models")
     p.add_argument("--kerberos",  required=True)
-    p.add_argument("--decoder",   default="hadamard", choices=["hadamard", "concat"])
     p.add_argument("--seed",      type=int, default=42)
     return p.parse_args()
 
@@ -140,27 +134,34 @@ def parse_args():
 def main():
     args = parse_args()
     set_seed(args.seed)
-    cfg    = LinkPredConfig(decoder_type=args.decoder)
+    cfg    = LinkPredConfig()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    print(f"Device  : {device}  |  Decoder : {cfg.decoder_type}")
-    print(f"Config  : {cfg}")
+    print(f"Device : {device}")
+    print(f"Config : {cfg}")
 
     print("\nLoading dataset C ...")
     dataset   = load_dataset("C", args.data_dir)
-    num_nodes = dataset.x.shape[0]   # 3327 — true count
+    num_nodes = dataset.x.shape[0]   # 3327
     in_dim    = dataset.x.shape[1]
     pos_set   = build_pos_set(dataset.train_pos)
-    print(f"  true nodes={num_nodes}  in_dim={in_dim}  "
-          f"pos_set_size={len(pos_set)}")
+    print(f"  true nodes={num_nodes}  in_dim={in_dim}  pos_set={len(pos_set)}")
 
     dataset.x          = dataset.x.to(device)
     dataset.edge_index  = dataset.edge_index.to(device)
 
-    model     = LinkPredictor(in_dim, cfg).to(device)
-    print(f"  params={sum(p.numel() for p in model.parameters()):,}")
+    # ── Model ────────────────────────────────────────────────────────────────
+    model = NCNLinkPredictor(in_dim, cfg).to(device)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay)
+    # Precompute structural features (CN, AA, RA) — done once on CPU
+    model.precompute_structural(dataset.edge_index, num_nodes)
+
+    total_params = sum(p.numel() for p in model.parameters())
+    print(f"  params={total_params:,}")
+
+    optimizer = torch.optim.Adam(
+        model.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay
+    )
     scheduler = get_scheduler(optimizer, cfg.warmup_epochs, cfg.epochs, cfg.eta_min)
 
     os.makedirs(args.model_dir, exist_ok=True)
@@ -176,10 +177,8 @@ def main():
 
         if epoch % cfg.eval_every == 0 or epoch == 1:
             hits     = evaluate(model, dataset, cfg, device)
-            # FIX 3: EMA smoothing for early stopping signal
             ema_hits = cfg.ema_alpha * hits + (1 - cfg.ema_alpha) * ema_hits
             elapsed  = time.time() - t0
-
             print(f"Epoch {epoch:4d}/{cfg.epochs}  loss={loss:.4f}  "
                   f"Hits@{cfg.hits_k}={hits:.4f}  EMA={ema_hits:.4f}  [{elapsed:.1f}s]")
 
@@ -191,8 +190,7 @@ def main():
             else:
                 patience_ctr += 1
                 if patience_ctr >= cfg.patience:
-                    print(f"Early stopping at epoch {epoch} "
-                          f"({cfg.patience} evals without improvement)")
+                    print(f"Early stopping at epoch {epoch}")
                     break
 
     print(f"\nDone. Best Hits@{cfg.hits_k} = {best_hits:.4f}")
