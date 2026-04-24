@@ -35,13 +35,13 @@ class GCNConfig:
     dropout:          float = 0.5
 
     # Training
-    lr:               float = 0.01
+    lr:               float = 5e-4
     weight_decay:     float = 5e-4
     epochs:           int   = 2000
     patience:         int   = 30         # in eval_every units
     eval_every:       int   = 10
-    eta_min:          float = 1e-4
-    label_smoothing:  float = 0.1
+    eta_min:          float = 5e-6
+    label_smoothing:  float = 0.0
 
 
 # Dataset B  --  GraphSAGE, mini-batch, 2-class node classification

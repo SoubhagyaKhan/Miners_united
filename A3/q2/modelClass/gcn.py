@@ -2,6 +2,13 @@
 models/gcn.py  --  GCN model for Dataset A using PyG's GCNConv
 
 GCNModel(x, edge_index) -> logits [N, num_classes]
+
+Matches GATModel structure:
+    - LayerNorm instead of BatchNorm
+    - ELU instead of ReLU
+    - Residual on layers 1+ (layer 0 skipped, dims differ)
+    - input_proj for layer-0 residual removed (matches GAT which also skips it)
+    - No cached=True (safe for train/eval switching)
 """
 
 import torch
@@ -14,8 +21,6 @@ from config import GCNConfig
 
 class GCNModel(nn.Module):
     """
-    Multi-layer GCN using PyG's GCNConv with residual connections and BN.
-
     predict.py interface: model(x, edge_index) -> logits [N, num_classes]
     """
 
@@ -28,26 +33,20 @@ class GCNModel(nn.Module):
 
         for i in range(cfg.num_layers):
             in_ch = in_dim if i == 0 else cfg.hidden_dim
-            self.convs.append(GCNConv(in_ch, cfg.hidden_dim, cached=True))
-            self.norms.append(nn.BatchNorm1d(cfg.hidden_dim))
+            self.convs.append(GCNConv(in_ch, cfg.hidden_dim))
+            self.norms.append(nn.LayerNorm(cfg.hidden_dim))
 
         self.dropout    = nn.Dropout(cfg.dropout)
         self.classifier = nn.Linear(cfg.hidden_dim, num_classes)
-
-        # projection for first-layer residual (in_dim != hidden_dim)
-        self.input_proj = nn.Linear(in_dim, cfg.hidden_dim, bias=False)
 
     def forward(self, x: torch.Tensor, edge_index: torch.Tensor, **kwargs) -> torch.Tensor:
         for i, (conv, norm) in enumerate(zip(self.convs, self.norms)):
             x_in = x
             x    = conv(x, edge_index)
             x    = norm(x)
-            x    = F.relu(x)
-            # residual: project input on first layer
-            if i == 0:
-                x = x + self.input_proj(x_in)
-            else:
-                x = x + x_in
+            x    = F.elu(x)
+            if i > 0:
+                x = x + x_in          # residual: skip layer 0 (in_dim != hidden_dim)
             x = self.dropout(x)
 
-        return self.classifier(x)               # [N, num_classes]
+        return self.classifier(x)
