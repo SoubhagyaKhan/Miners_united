@@ -31,7 +31,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import scipy.sparse as sp
-from torch_geometric.nn import GATv2Conv
+from torch_geometric.nn import SAGEConv
 
 from config import LinkPredConfig
 
@@ -101,155 +101,48 @@ def build_mlp(in_dim: int, hidden_dim: int, num_layers: int, dropout: float) -> 
 # Model
 # ─────────────────────────────────────────────────────────────────────────────
 
-class NCNLinkPredictor(nn.Module):
-    """
-    GATv2 encoder  +  symmetric concat decoder  +  CN/AA/RA structural features
-
-    Decoder input per pair (u,v):
-        [z_first(512) || z_second(512) || cn(1) || aa(1) || ra(1)]  =  1027-dim
-    """
-
-    def __init__(self, in_dim: int, cfg: LinkPredConfig):
+class GraphSAGELinkPredictor(nn.Module):
+    def __init__(self, in_dim, cfg):
         super().__init__()
-        self.cfg = cfg
 
-        heads    = cfg.num_heads
-        head_dim = cfg.hidden_dim // heads
-        assert cfg.hidden_dim % heads == 0
+        self.hidden_dim = cfg.hidden_dim
 
-        # ── Input projection ─────────────────────────────────────────────────
-        self.input_proj = nn.Sequential(
-            nn.Linear(in_dim, cfg.proj_dim),
-            nn.LayerNorm(cfg.proj_dim),
-            nn.ELU(),
+        # ── GraphSAGE Encoder ─────────────────────────────
+        self.conv1 = SAGEConv(in_dim, self.hidden_dim)
+        self.conv2 = SAGEConv(self.hidden_dim, self.hidden_dim)
+
+        # ── MLP Decoder ───────────────────────────────────
+        self.mlp = nn.Sequential(
+            nn.Linear(self.hidden_dim, self.hidden_dim),
+            nn.ReLU(),
             nn.Dropout(cfg.dropout),
+            nn.Linear(self.hidden_dim, self.hidden_dim // 2),
+            nn.ReLU(),
+            nn.Linear(self.hidden_dim // 2, 1)
         )
 
-        # ── GATv2 Encoder ────────────────────────────────────────────────────
-        self.conv1 = GATv2Conv(
-            cfg.proj_dim, head_dim,
-            heads=heads, concat=True,
-            dropout=cfg.attn_dropout, add_self_loops=True,
-        )
-        self.norm1 = nn.BatchNorm1d(cfg.hidden_dim)
+    def encode(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = F.dropout(x, p=0.5, training=self.training)
 
-        self.conv2 = GATv2Conv(
-            cfg.hidden_dim, cfg.hidden_dim,
-            heads=heads, concat=False,
-            dropout=cfg.attn_dropout, add_self_loops=True,
-        )
-        self.norm2 = nn.BatchNorm1d(cfg.hidden_dim)
+        x = self.conv2(x, edge_index)
+        return x
 
-        self.enc_drop = nn.Dropout(cfg.dropout)
+    def decode(self, z, edge_pairs):
+        u = z[edge_pairs[:, 0]]
+        v = z[edge_pairs[:, 1]]
 
-        # ── Structural feature projection ─────────────────────────────────────
-        # 3 raw scalars (CN, AA, RA) → struct_dim via small MLP
-        # This lets the model learn non-linear combinations of the heuristics
-        self.struct_proj = nn.Sequential(
-            nn.Linear(3, cfg.struct_dim),
-            nn.BatchNorm1d(cfg.struct_dim),
-            nn.ELU(),
-        )
+        # Hadamard Product (element-wise)
+        h = u * v
 
-        # ── Decoder MLP ───────────────────────────────────────────────────────
-        # input: [z_first || z_second || struct]
-        decoder_in = cfg.hidden_dim * 2 + cfg.struct_dim
-        self.decoder = build_mlp(
-            in_dim=decoder_in,
-            hidden_dim=cfg.decoder_hidden,
-            num_layers=cfg.decoder_layers,
-            dropout=cfg.dropout,
-        )
+        return self.mlp(h).squeeze(-1)
 
-        # Xavier init
-        for m in self.modules():
-            if isinstance(m, nn.Linear):
-                nn.init.xavier_uniform_(m.weight)
-                if m.bias is not None:
-                    nn.init.zeros_(m.bias)
-
-        # Structural matrices (set after construction via precompute_structural)
-        self.CN = None
-        self.AA = None
-        self.RA = None
-
-    # ── Structural precomputation ─────────────────────────────────────────────
-
-    def precompute_structural(self, edge_index: torch.Tensor, num_nodes: int):
-        """Call once after model init, before training."""
-        print("Precomputing structural features (CN, AA, RA) ...")
-        self.CN, self.AA, self.RA = compute_structural_matrices(edge_index, num_nodes)
-        print(f"  Done. Matrices shape: {self.CN.shape}")
-
-    def get_structural_features(
-        self, edge_pairs: torch.Tensor, device: torch.device
-    ) -> torch.Tensor:
-        """
-        Look up CN, AA, RA for each pair and project to struct_dim.
-        edge_pairs : [E, 2]
-        returns      [E, struct_dim]
-        """
-        cn = sparse_lookup(self.CN, edge_pairs).to(device)  # [E]
-        aa = sparse_lookup(self.AA, edge_pairs).to(device)  # [E]
-        ra = sparse_lookup(self.RA, edge_pairs).to(device)  # [E]
-
-        raw = torch.stack([cn, aa, ra], dim=1)              # [E, 3]
-        return self.struct_proj(raw)                         # [E, struct_dim]
-
-    # ── Encoder ──────────────────────────────────────────────────────────────
-
-    def encode(self, x: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
-        h = self.input_proj(x)
-
-        # Layer 0
-        h = self.conv1(h, edge_index)
-        h = self.norm1(h)
-        h = F.elu(h)
-        h = self.enc_drop(h)
-
-        # Layer 1 + residual
-        residual = h
-        h = self.conv2(h, edge_index)
-        h = self.norm2(h)
-        h = h + residual
-        h = F.elu(h)
-        h = self.enc_drop(h)
-
-        return h   # [N, hidden_dim]
-
-    # ── Decoder ──────────────────────────────────────────────────────────────
-
-    def decode(
-        self,
-        z: torch.Tensor,
-        edge_pairs: torch.Tensor,
-        device: torch.device,
-    ) -> torch.Tensor:
-        u = edge_pairs[:, 0]
-        v = edge_pairs[:, 1]
-
-        z_u = z[u]
-        z_v = z[v]
-
-        # Symmetric concat
-        swap     = (u > v).unsqueeze(1)
-        z_first  = torch.where(swap, z_v, z_u)
-        z_second = torch.where(swap, z_u, z_v)
-
-        # Structural features
-        struct = self.get_structural_features(edge_pairs, device)  # [E, struct_dim]
-
-        pair = torch.cat([z_first, z_second, struct], dim=1)       # [E, D]
-        return self.decoder(pair).squeeze(1)                        # [E]
-
-    # ── Forward ──────────────────────────────────────────────────────────────
-
-    def forward(
-        self,
-        x: torch.Tensor,
-        edge_index: torch.Tensor,
-        edge_pairs: torch.Tensor,
-    ) -> torch.Tensor:
-        device = x.device
+    def forward(self, x, edge_index, edge_pairs):
         z = self.encode(x, edge_index)
-        return self.decode(z, edge_pairs, device)
+        return self.decode(z, edge_pairs)
+
+    # Dummy function to keep compatibility with your training code
+    def precompute_structural(self, edge_index, num_nodes):
+        pass
+  

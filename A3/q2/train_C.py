@@ -20,7 +20,7 @@ sys.path.insert(0, SRC_DIR)
 sys.path.insert(0, os.path.join(SRC_DIR, ".."))
 
 from config import LinkPredConfig
-from modelClass.link_predictor import NCNLinkPredictor
+from modelClass.link_predictor import GraphSAGELinkPredictor
 from load_dataset import load_dataset
 
 
@@ -151,7 +151,7 @@ def main():
     dataset.edge_index  = dataset.edge_index.to(device)
 
     # ── Model ────────────────────────────────────────────────────────────────
-    model = NCNLinkPredictor(in_dim, cfg).to(device)
+    model = GraphSAGELinkPredictor(in_dim, cfg).to(device)
 
     # Precompute structural features (CN, AA, RA) — done once on CPU
     model.precompute_structural(dataset.edge_index, num_nodes)

@@ -93,7 +93,7 @@ class LinkPredConfig:
     lr:               float = 1e-3
     weight_decay:     float = 1e-4
     epochs:           int   = 2000
-    patience:         int   = 150
+    patience:         int   = 30
     eval_every:       int   = 5
     eta_min:          float = 1e-6
 
